@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="theme-color" content="#000000">
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
+  <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
+  <title>Lazywill DEMO</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    body {
+      background: #545649;
+      font-family: "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "sans-serif";
+      font-weight: 300;
+      margin: 0;
+    }
+
+    [data-whatintent="mouse"] *:focus,
+    [data-whatintent="touch"] *:focus {
+      outline: none;
+    }
+
+    #app {
+      display: block;
+    }
+
+    #splash {
+      background: #4d4f44;
+      bottom: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      left: 0;
+      height: 100vH;
+      position: absolute;
+      padding: 2em 3em 3em;
+      top: 0;
+      transition: all 1s;
+      width: 100%;
+      z-index: 100;
+      overflow-y: auto;
+    }
+
+    #splash .inner {
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    #splash h1 {
+      color: #fff;
+      font-weight: 300;
+      text-align: center;
+      font-size: 1.2em;
+      margin: 0;
+    }
+
+    #splash .logo {
+      margin: 0 auto 1.2em;
+      max-width: 200px;
+      max-height: 120px;
+      width: 80%;
+      height: auto;
+    }
+
+    #splash p {
+      line-height: 1.4em;
+      font-size: 1.1em;
+      color: #fff;
+      margin: 0 0 1.2em;
+      font-weight: 300;
+    }
+
+    #splash p b {
+      font-weight: bold;
+      color: #fff;
+    }
+
+    #splash .avatar {
+      display: inline-block;
+      height: 26px;
+      margin: 0 .3em 0 0;
+      vertical-align: middle;
+      width: 26px;
+    }
+
+    #splash .control {
+      height: 130px;
+      margin: 0 -3em 0;
+      padding: 20px 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #splash .loading {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      opacity: .5;
+      width: 100px;
+      transition: 1s;
+    }
+
+    #splash .entry {
+      background: #545649;
+      border: none;
+      border-radius: 50%;
+      box-shadow: 0 0 14px 5px rgba(255, 255, 255, .2);
+      cursor: pointer;
+      display: inline-block;
+      height: 100px;
+      left: 150%;
+      overflow: hidden;
+      padding: 20px;
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      transition: all 1s, box-shadow .2s;
+      width: 100px;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    #splash .entry:focus {
+      box-shadow: 0 0 14px 0 rgba(255, 255, 255, .2);
+    }
+
+    #splash .entry svg {
+      fill: #eee;
+      animation-name: arrow-anim;
+      animation-duration: 1s;
+      animation-delay: 1.5s;
+      animation-fill-mode: forwards;
+      margin-left: -200px;
+      transform: rotate(0deg);
+    }
+
+    @keyframes arrow-anim {
+      0% {
+        margin-left: -200px;
+        transform: rotate(0deg) scale(1);
+      }
+      50% {
+        margin-left: 0;
+        transform: rotate(360deg) scale(1);
+      }
+      75% {
+        margin-left: 0;
+        transform: rotate(360deg) scale(1.5);
+      }
+      100% {
+        margin-left: 0;
+        transform: rotate(360deg) scale(1);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      #splash .logo {
+        max-width: 300px;
+      }
+    }
+
+    noscript {
+      background: #d00;
+      color: #fff;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      left: 0;
+      padding: .8em;
+      text-align: center;
+      font-weight: 400;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="splash">
+    <div class="inner">
+      <noscript>
+        You need to enable JavaScript to run this app!
+      </noscript>
+      <h1>Welcome to</h1>
+      <div class="logo">
+        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid meet"
+          viewBox="0 0 300 120" width="100%" height="100%">
+          <g fill-rule="evenodd">
+            <path fill="#68CAD5" d="M17.5 0H0v87.8h17.5V0zM140 113.3c4-4.2 7.4-11 9.9-20.3l-15.4-79H78.8v14h21.4l-21 44.6h-5.4V39.2c0-8-2-14.3-6-18.7-4-4.3-10-6.5-17.6-6.5-8.5 0-16.4 2.3-23.6 7l6 12.2a29.5 29.5 0 0 1 15-5.2c5.8 0 8.7 3.2 8.7 9.3v4.8l-9.6.4c-8.3.4-14.6 2.5-18.8 6-4.1 3.8-6.2 9.4-6.2 16.9 0 7 1.6 12.5 4.6 16.5 3 4 7.2 6 12.6 6 4 0 7.5-.9 10.2-2.6 2.7-1.6 5.4-4.7 8-9.1h.4L61 87.8h8.5v.3H84v-.3h36.4v-14H97.3L118.7 29l1.9-1s11.2 60.1 11.8 60.7c2.2 11.4-6.7 16.7-12.3 16.7-2.1 0-4-.3-5.8-.8v13.8c2.6.7 5.7 1 9 1 7 0 12.4-2 16.6-6.1zM39.9 65c0-3.9.8-6.9 2.6-8.8 1.8-2 4.6-3 8.5-3.3l5.3-.2v5.9c0 4.6-1 8.3-2.8 11a8.5 8.5 0 0 1-7.4 4.2c-4.2 0-6.3-3-6.3-8.8z"></path>
+            <path fill="#9C3" d="M252.4 14h-34.5l-7 40.7c-.8 5.3-1.6 12-2.2 19.8h-.2c-.7-8.9-1.4-15.5-2.2-19.8L199 13.9h-22.5l-7 40.7a265.3 265.3 0 0 0-2 20h-.4c-.7-8.8-1.4-15.4-2.2-20L158.4 14h-17.6l14.5 74h22.5l8.2-48.3c.4-2.7 1-6.9 1.6-12.8h.3l2.5 18.1 7.2 43h22.9L232.4 27h2.5v60.7h17.5V14zm-17.5.4v.1zM299.2 0h-17.5v87.8h17.5V0zm-23.4 0h-17.6v87.8h17.6V0z"></path>
+          </g>
+        </svg>
+      </div>
+      <p>
+        This is a small sneak preview of a coming
+        <b>vocabulary</b> learning app for declared
+        <b>visual</b> learners.
+      </p>
+      <p>Take a look and share with me what you think</p>
+      <p class="sign">
+        <span class="avatar">
+          <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid meet"
+            viewBox="0 0 200 200" width="100%" height="100%">
+            <g fillRule="evenodd" clipRule="evenodd">
+              <path fill="#FDDECA" d="M148.6 84.3s6.7-10.6 10.2-5.6c3.4 5-5.4 26.2-6.7 26.3-1.3.1-3.2.6-4-1.8l-2-7 2.5-11.9z" />
+              <path fill="#9C3" d="M0 100c0 55.2 44.8 99 100 99s100-43.8 100-99a100 100 0 0 0-200 0z" />
+              <path opacity=".2" d="M140.9 130.5l-39.3 17-22.8 46.2 31.3 6.5a99.6 99.6 0 0 0 89.6-99.7c0-37.6-20.5-70.4-50.7-87.5a43.5 43.5 0 0 0-19 31.6l10 79.4c0 2.3.3 4.5.9 6.5z"
+              />
+              <path fill="#F9BB00" d="M67.7 67.7a43.6 43.6 0 1 1 87.2 0 43.6 43.6 0 0 1-87.2 0z" />
+              <path fill="#FDDECA" d="M75.1 84.3S68.4 73.8 65 78.8c-3.5 5 5.3 26.2 6.6 26.3 1.3.1 3.3.6 4-1.8l2-7-2.5-11.9zM148.6 84.3s6.7-10.6 10.2-5.6c3.4 5-5.4 26.2-6.7 26.3-1.3.1-3.2.6-4-1.8l-2-7 2.5-11.9z"
+              />
+              <path opacity=".1" d="M148.6 84.3s6.7-10.6 10.2-5.6c3.4 5-5.4 26.2-6.7 26.3-1.3.1-3.2.6-4-1.8l-2-7 2.5-11.9z" />
+              <path fill="#68CAD5" d="M103.2 138.8L30 171.1a99.1 99.1 0 0 0 71 28.5c35 0 65.7-17.4 83.2-45.3l-43.1-15.5h-37.9z" />
+              <path fill="#FDDECA" d="M81.3 134.6c0 13.3 6.6 35.6 29.9 35.6s34.2-15.2 34.2-28.4l7.7-74.1C150.8 46 133 29.2 111.2 29.2S71.8 46 69.5 67.7l11.9 67z"
+              />
+              <path fill="#F9BB00" d="M72.8 88.3l2 10 4.7 5s-.7-1.3-2.8-13.1c-2-11.2-1.7-24.8-1.4-26.5 1.5-9 4.2-17.4 8.5-19.9 10.5-6 14.7-1 26.9-1 10.9 0 17.5-5.3 27.6 1.3 8 5.2 10.5 23.4 10.7 32.5.1 9.2-2.2 24.6-2.2 24.6l4.4-5.8 1.4-10.6.5-18.4c-2.3-21.7-20.2-38.5-41.9-38.5S71.7 44.7 69.4 66.3l3.4 22z"
+              />
+              <path opacity=".1" d="M120.6 153.9l-8.3-6.3s12-2.1 16.6-6.3c4.7-4.2 10.4-7.4 12.5-10.5 1.2-1.9 6.7-38.5 6.7-38.3 0 .1.6-6 .8-11.8.1-4.7-.2-9.2-.2-9.2L151 59l-2.3-14.3s4.2 7.2 5.7 15c1.8 9.3-.6 17.7-.6 17.7l-.5 1.7-2 16.3-1.1 1.3-5.6 53-11.4 4.2h-12.5z"
+              />
+              <path opacity=".1" fill="#333" d="M118.3 95.5c1 1.4 7.5 13.8-4.5 14.9-2.5.2-5-1.8-7.5-5.8v-.3c1.4 1.8 4.3 2.8 6.7 2.8 7.3 0 6.2-7 5.3-11.6z"
+              />
+              <path opacity=".3" fill="#333" d="M105 69.7s.6 4.5 0 4.7c-.5.2-2.7-.2-4.8 0-2 .2-8.3 4.7-8.3 4.7V76s1.2-2.7 6-4.7c4.7-2 7.1-1.6 7.1-1.6zM120.3 69.7s2.4-.4 7.2 1.6c4.8 2 6 4.7 6 4.7v3s-6.4-4.4-8.4-4.6c-2-.2-4.2.2-4.8 0-.5-.2 0-4.7 0-4.7z"
+              />
+              <path opacity=".4" d="M100 116.6h.2s4.6 8 13.3 8c9.2 0 13.1-8 13.1-8l.2.2s-5.5 6.6-13.3 6.7c-7.6.1-13.6-6.9-13.6-6.9z" />
+              <path fill="#06C" d="M98.6 86.5a2 2 0 1 1 4 0 2 2 0 0 1-4 0zM122.8 86.5a2 2 0 1 1 4 0 2 2 0 0 1-4 0z" />
+            </g>
+          </svg>
+        </span>
+        lazy
+        <b>Will</b>
+      </p>
+      <div class="control">
+        <svg class="loading" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+          version="1.0" width="100%" height="100%" viewBox="0 0 128 16" xml:space="preserve">
+          <path fill="#ffffff" d="M6.4,4.8A3.2,3.2,0,1,1,3.2,8,3.2,3.2,0,0,1,6.4,4.8Zm12.8,0A3.2,3.2,0,1,1,16,8,3.2,3.2,0,0,1,19.2,4.8ZM32,4.8A3.2,3.2,0,1,1,28.8,8,3.2,3.2,0,0,1,32,4.8Zm12.8,0A3.2,3.2,0,1,1,41.6,8,3.2,3.2,0,0,1,44.8,4.8Zm12.8,0A3.2,3.2,0,1,1,54.4,8,3.2,3.2,0,0,1,57.6,4.8Zm12.8,0A3.2,3.2,0,1,1,67.2,8,3.2,3.2,0,0,1,70.4,4.8Zm12.8,0A3.2,3.2,0,1,1,80,8,3.2,3.2,0,0,1,83.2,4.8ZM96,4.8A3.2,3.2,0,1,1,92.8,8,3.2,3.2,0,0,1,96,4.8Zm12.8,0A3.2,3.2,0,1,1,105.6,8,3.2,3.2,0,0,1,108.8,4.8Zm12.8,0A3.2,3.2,0,1,1,118.4,8,3.2,3.2,0,0,1,121.6,4.8Z"
+          />
+          <g>
+            <path fill="#ffffff" d="M-42.7,3.84A4.16,4.16,0,0,1-38.54,8a4.16,4.16,0,0,1-4.16,4.16A4.16,4.16,0,0,1-46.86,8,4.16,4.16,0,0,1-42.7,3.84Zm12.8-.64A4.8,4.8,0,0,1-25.1,8a4.8,4.8,0,0,1-4.8,4.8A4.8,4.8,0,0,1-34.7,8,4.8,4.8,0,0,1-29.9,3.2Zm12.8-.64A5.44,5.44,0,0,1-11.66,8a5.44,5.44,0,0,1-5.44,5.44A5.44,5.44,0,0,1-22.54,8,5.44,5.44,0,0,1-17.1,2.56Z"
+            />
+            <animateTransform attributeName="transform" type="translate" values="23 0;36 0;49 0;62 0;74.5 0;87.5 0;100 0;113 0;125.5 0;138.5 0;151.5 0;164.5 0;178 0"
+              calcMode="discrete" dur="1170ms" repeatCount="indefinite" />
+          </g>
+        </svg>
+        <button class="entry" aria-label="Forward">
+          <svg viewBox="0 0 24 24" aria-hidden="true" width="100%" height="100%">
+            <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="app"></div>
+
+  <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+  <!-- <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,700" rel="stylesheet"> -->
+</body>
+
+</html>
