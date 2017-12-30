@@ -22,7 +22,7 @@ const VocabNav = ({ classes, ...props }) => {
       <BlockButton look="squareDark">
         <InfoOutline />
       </BlockButton>
-      <BlockButton look="fullGreen">
+      <BlockButton look="fullGreen" onClick={props.onNextClick}>
         next
         <ArrowForward />
       </BlockButton>

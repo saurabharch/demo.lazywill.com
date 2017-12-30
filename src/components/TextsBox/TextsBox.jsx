@@ -6,7 +6,7 @@ const styles = theme => ({
   root: {
     color: "#fff",
     fontSize: "1em",
-    padding: "1em 2em",
+    padding: "1em 2em 2em",
     width: "100%"
   },
   entry: {
@@ -37,20 +37,20 @@ const styles = theme => ({
   }
 });
 
-const TextsBox = ({ vocabItem, classes, ...props }) => {
+const TextsBox = ({ combo, classes, ...props }) => {
   return (
     <div className={classes.root}>
       <header className={classes.entry}>
-        <h1>{vocabItem.entry.text}</h1>
+        <h1>{combo.entry.text}</h1>
       </header>
       <div className={classes.meta}>
-        <span className={classes.metaType}>{vocabItem.meaning.type}</span> •{" "}
+        <span className={classes.metaType}>{combo.meaning.type}</span> •{" "}
         <span className={classes.metaDefinition}>
-          {vocabItem.meaning.definition}
+          {combo.meaning.definition}
         </span>
       </div>
       <ul className={classes.sentences}>
-        {vocabItem.sentences.map(sentence => (
+        {combo.sentences.map(sentence => (
           <li key={sentence.id}>{sentence.text}</li>
         ))}
       </ul>

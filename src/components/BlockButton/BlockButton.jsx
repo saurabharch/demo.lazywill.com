@@ -38,8 +38,12 @@ const styles = theme => ({
 
 const getStyle = (classes, look) => (look ? classes[look] : classes["default"]);
 
-const BlockButton = ({ classes, children, look }) => {
-  return <Button className={getStyle(classes, look)}>{children}</Button>;
+const BlockButton = ({ classes, children, look, onClick }) => {
+  return (
+    <Button className={getStyle(classes, look)} onClick={onClick}>
+      {children}
+    </Button>
+  );
 };
 
 BlockButton.propTypes = {

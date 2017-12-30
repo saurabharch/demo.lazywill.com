@@ -13,21 +13,21 @@ const styles = theme => ({
   }
 });
 
-const PictureBox = ({ vocabItem, ...props }) => {
-  function getPictureSrc(vocabItem) {
-    return `https://d3nstmfkiycslv.cloudfront.net/${
-      vocabItem.picture.arangoKey
-    }_${vocabItem.picture.hash}_800.jpeg`;
+const PictureBox = ({ combo, ...props }) => {
+  function getPictureSrc(combo) {
+    return `https://d3nstmfkiycslv.cloudfront.net/${combo.picture.arangoKey}_${
+      combo.picture.hash
+    }_800.jpeg`;
   }
 
   return (
     <div className={props.classes.root}>
       <img
-        src={getPictureSrc(vocabItem)}
+        src={getPictureSrc(combo)}
         className={props.classes.picture}
         alt=""
       />
-      <PictureCredits picture={vocabItem.picture} />
+      <PictureCredits picture={combo.picture} />
     </div>
   );
 };
