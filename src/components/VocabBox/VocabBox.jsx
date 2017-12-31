@@ -19,12 +19,14 @@ const styles = theme => ({
 class VocabBox extends React.Component {
   render() {
     const { classes } = this.props;
-    const combo = this.props.comboQuery.Combo;
+    const comboQuery = this.props.comboQuery;
+
+    console.log(comboQuery);
 
     return (
       <div className={classes.root}>
-        {combo && <PictureBox combo={combo} />}
-        {combo && <TextsBox combo={combo} />}
+        <PictureBox comboQuery={comboQuery} />
+        <TextsBox comboQuery={comboQuery} />
       </div>
     );
   }

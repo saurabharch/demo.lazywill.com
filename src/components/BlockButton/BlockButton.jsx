@@ -22,7 +22,10 @@ const styles = theme => ({
   },
   fullGreen: {
     extend: "default",
-    background: theme.palette.background.accent
+    background: theme.palette.background.accent,
+    "&:hover": {
+      backgroundColor: theme.palette.background.accent
+    }
   },
   squareDark: {
     extend: "default",
@@ -30,17 +33,31 @@ const styles = theme => ({
     width: "60px",
     height: "60px"
   },
-  squareTransparent: {
+  squareTransparentLight: {
     extend: "squareDark",
-    background: "rgba(255, 255, 255, 0.2)"
+    background: "rgba(255, 255, 255, 0.2)",
+    "&:hover": {
+      backgroundColor: "rgba(0, 0, 0, 0.2)"
+    }
+  },
+  squareTransparentDark: {
+    extend: "squareDark",
+    background: "rgba(0, 0, 0, 0.7)",
+    "&:hover": {
+      backgroundColor: "rgba(0, 0, 0, 0.7)"
+    }
   }
 });
 
 const getStyle = (classes, look) => (look ? classes[look] : classes["default"]);
 
-const BlockButton = ({ classes, children, look, onClick }) => {
+const BlockButton = ({ classes, children, look, onClick, display }) => {
   return (
-    <Button className={getStyle(classes, look)} onClick={onClick}>
+    <Button
+      className={getStyle(classes, look)}
+      onClick={onClick}
+      style={{ display: display }}
+    >
       {children}
     </Button>
   );

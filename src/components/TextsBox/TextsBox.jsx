@@ -27,7 +27,8 @@ const styles = theme => ({
   },
   metaType: {
     fontStyle: "italic",
-    color: "#aaa"
+    color: "#aaa",
+    textTransform: "lowercase"
   },
   sentences: {
     fontSize: "1.4em",
@@ -37,23 +38,29 @@ const styles = theme => ({
   }
 });
 
-const TextsBox = ({ combo, classes, ...props }) => {
+const TextsBox = ({ comboQuery, classes, ...props }) => {
+  const combo = comboQuery.Combo;
+
   return (
     <div className={classes.root}>
-      <header className={classes.entry}>
-        <h1>{combo.entry.text}</h1>
-      </header>
-      <div className={classes.meta}>
-        <span className={classes.metaType}>{combo.meaning.type}</span> •{" "}
-        <span className={classes.metaDefinition}>
-          {combo.meaning.definition}
-        </span>
-      </div>
-      <ul className={classes.sentences}>
-        {combo.sentences.map(sentence => (
-          <li key={sentence.id}>{sentence.text}</li>
-        ))}
-      </ul>
+      {combo && (
+        <React.Fragment>
+          <header className={classes.entry}>
+            <h1>{combo.entry.text}</h1>
+          </header>
+          <div className={classes.meta}>
+            <span className={classes.metaType}>{combo.meaning.type}</span> •{" "}
+            <span className={classes.metaDefinition}>
+              {combo.meaning.definition}
+            </span>
+          </div>
+          <ul className={classes.sentences}>
+            {combo.sentences.map(sentence => (
+              <li key={sentence.id}>{sentence.text}</li>
+            ))}
+          </ul>
+        </React.Fragment>
+      )}
     </div>
   );
 };
