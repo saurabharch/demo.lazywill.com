@@ -3,7 +3,7 @@ import injectSheet from "react-jss";
 import ArrowForward from "material-ui-icons/ArrowForward";
 import InfoOutline from "material-ui-icons/InfoOutline";
 
-import BlockButton from "../BlockButton";
+import BlockButton from "../../Common/BlockButton";
 
 const styles = theme => ({
   nav: {

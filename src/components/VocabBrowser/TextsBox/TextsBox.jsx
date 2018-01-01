@@ -14,6 +14,7 @@ const styles = theme => ({
       fontSize: "2.8em",
       fontWeight: 300,
       letterSpacing: "-.02em",
+      lineHeight: ".9em",
       margin: 0
     }
   },

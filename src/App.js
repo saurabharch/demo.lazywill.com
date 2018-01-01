@@ -6,7 +6,7 @@ import normalize from "normalize-jss";
 import theme from "./styles/theme";
 import globals from "./styles/global";
 
-import VocabScreen from "./components/VocabScreen/";
+import VocabBrowser from "./components/VocabBrowser/";
 
 //import "typeface-open-sans";
 
@@ -15,7 +15,7 @@ class App extends Component {
     return (
       <MuiThemeProvider theme={theme}>
         <div className="App">
-          <VocabScreen />
+          <VocabBrowser />
         </div>
       </MuiThemeProvider>
     );

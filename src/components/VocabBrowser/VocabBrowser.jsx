@@ -3,8 +3,8 @@ import injectSheet from "react-jss";
 import { graphql } from "react-apollo";
 import gql from "graphql-tag";
 
-import VocabBox from "../VocabBox/";
-import VocabNav from "../VocabNav/";
+import VocabBox from "./VocabBox/";
+import VocabNav from "./VocabNav/";
 
 const styles = theme => ({
   root: {
@@ -26,7 +26,7 @@ const styles = theme => ({
   }
 });
 
-class VocabScreen extends React.Component {
+class VocabBrowser extends React.Component {
   constructor(props) {
     super(props);
     this.changeActiveCombo = this.changeActiveCombo.bind(this);
@@ -106,5 +106,5 @@ const COMBOS_QUERY = gql`
 `;
 
 export default graphql(COMBOS_QUERY, { name: "combosQuery" })(
-  injectSheet(styles)(VocabScreen)
+  injectSheet(styles)(VocabBrowser)
 );

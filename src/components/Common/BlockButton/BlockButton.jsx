@@ -1,0 +1,37 @@
+import React from "react";
+import PropTypes from "prop-types";
+import { withStyles } from "material-ui/styles";
+
+import Button from "material-ui/Button";
+
+const styles = theme => ({
+  root: {
+    borderRadius: 0,
+    border: 0,
+    boxShadow: "none",
+    color: "white",
+    fontSize: "1.8em",
+    fontWeight: 300,
+    height: "100%",
+    minWidth: 0,
+    textTransform: "none",
+    width: "100%"
+  }
+});
+
+const BlockButton = props => {
+  const { classes, children, onClick } = props;
+  return (
+    <Button classes={{ root: classes.root }} onClick={onClick}>
+      {children}
+    </Button>
+  );
+};
+
+BlockButton.propTypes = {
+  classes: PropTypes.object.isRequired,
+  children: PropTypes.node,
+  look: PropTypes.string
+};
+
+export default withStyles(styles)(BlockButton);

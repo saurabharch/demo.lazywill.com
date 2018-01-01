@@ -21,7 +21,7 @@ class VocabBox extends React.Component {
     const { classes } = this.props;
     const comboQuery = this.props.comboQuery;
 
-    console.log(comboQuery);
+    //console.log(comboQuery);
 
     return (
       <div className={classes.root}>
