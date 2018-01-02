@@ -9,7 +9,10 @@ const styles = theme => ({
     bottom: 0,
     left: 0,
     position: "absolute",
-    width: "100%"
+    width: "100%",
+    ".picture-mode &": {
+      display: "none"
+    }
   }
 });
 

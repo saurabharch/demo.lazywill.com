@@ -4,6 +4,8 @@ import injectSheet from "react-jss";
 import PictureCredits from "../PictureCredits/";
 import SpotArea from "../SpotArea/";
 import PictureModeToggle from "./PictureModeToggle";
+import SvgEl from "../../Common/SvgEl/";
+import { LOGOS } from "../../../constants/logos";
 
 const styles = theme => ({
   root: {
@@ -12,6 +14,15 @@ const styles = theme => ({
   },
   picture: {
     width: "100%"
+  },
+  logo: {
+    width: "50px",
+    position: "absolute",
+    top: "15px",
+    left: "15px",
+    ".picture-mode &": {
+      display: "none"
+    }
   }
 });
 
@@ -41,7 +52,6 @@ class PictureBox extends React.Component {
   }
 
   togglePictureMode() {
-    console.log("togglePictureMode");
     this.setState(prevState => ({
       pictureMode: !prevState.pictureMode
     }));
@@ -71,6 +81,9 @@ class PictureBox extends React.Component {
               onClick={this.togglePictureMode}
               pictureMode={pictureMode}
             />
+            <div className={classes.logo}>
+              <SvgEl svg={LOGOS.MAIN} />
+            </div>
             <PictureCredits
               picture={combo.picture}
               detailsOpened={this.state.detailsOpened}
