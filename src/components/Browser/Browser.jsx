@@ -17,7 +17,7 @@ const styles = theme => ({
   }
 });
 
-class VocabBrowser extends React.Component {
+class Browser extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -118,5 +118,5 @@ const COMBOS_QUERY = gql`
 `;
 
 export default graphql(COMBOS_QUERY, { name: "combosQuery" })(
-  injectSheet(styles)(VocabBrowser)
+  injectSheet(styles)(Browser)
 );
