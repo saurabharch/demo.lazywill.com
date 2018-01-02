@@ -38,7 +38,7 @@ const styles = theme => ({
   }
 });
 
-const PictureCreditsDetails = props => {
+const CreditsDetails = props => {
   function getPictureSrc(picture) {
     return `https://d3nstmfkiycslv.cloudfront.net/${picture.arangoKey}_${
       picture.hash
@@ -76,4 +76,4 @@ const PictureCreditsDetails = props => {
   );
 };
 
-export default injectSheet(styles)(PictureCreditsDetails);
+export default injectSheet(styles)(CreditsDetails);

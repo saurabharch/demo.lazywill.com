@@ -1,8 +1,8 @@
 import React from "react";
 import injectSheet from "react-jss";
 
-import PictureCreditsToggle from "./PictureCreditsToggle";
-import PictureCreditsDetails from "./PictureCreditsDetails";
+import CreditsDetailsToggle from "./CreditsDetailsToggle";
+import CreditsDetails from "./CreditsDetails";
 
 const styles = theme => ({
   root: {
@@ -17,13 +17,13 @@ const PictureCredits = ({
   picture,
   classes,
   onClick,
-  creditsOpened,
+  detailsOpened,
   ...props
 }) => {
   return (
-    <div className={`${classes.root} ${creditsOpened ? "opened" : ""}`}>
-      <PictureCreditsToggle creditsOpened={creditsOpened} onClick={onClick} />
-      <PictureCreditsDetails creditsOpened={creditsOpened} picture={picture} />
+    <div className={`${classes.root} ${detailsOpened ? "opened" : ""}`}>
+      <CreditsDetailsToggle detailsOpened={detailsOpened} onClick={onClick} />
+      <CreditsDetails picture={picture} />
     </div>
   );
 };

@@ -3,6 +3,7 @@ import injectSheet from "react-jss";
 
 import PictureCredits from "../PictureCredits/";
 import SpotArea from "../SpotArea/";
+import PictureModeToggle from "./PictureModeToggle";
 
 const styles = theme => ({
   root: {
@@ -17,10 +18,14 @@ const styles = theme => ({
 class PictureBox extends React.Component {
   constructor(props) {
     super(props);
-    this.togglePictureCredits = this.togglePictureCredits.bind(this);
+
     this.state = {
-      creditsOpened: false
+      detailsOpened: false,
+      pictureMode: false
     };
+
+    this.toggleCreditsDetails = this.toggleCreditsDetails.bind(this);
+    this.togglePictureMode = this.togglePictureMode.bind(this);
   }
 
   getPictureSrc(combo) {
@@ -29,18 +34,30 @@ class PictureBox extends React.Component {
     }_800.jpeg`;
   }
 
-  togglePictureCredits() {
+  toggleCreditsDetails() {
     this.setState(prevState => ({
-      creditsOpened: !prevState.creditsOpened
+      detailsOpened: !prevState.detailsOpened
+    }));
+  }
+
+  togglePictureMode() {
+    console.log("togglePictureMode");
+    this.setState(prevState => ({
+      pictureMode: !prevState.pictureMode
     }));
   }
 
   render() {
     const combo = this.props.comboQuery.Combo;
     const classes = this.props.classes;
+    const pictureMode = this.state.pictureMode;
 
     return (
-      <div className={classes.root}>
+      <div
+        className={`${classes.root} ${
+          pictureMode ? "picture-mode" : "vocab-mode"
+        }`}
+      >
         {combo && (
           <React.Fragment>
             <img
@@ -50,10 +67,14 @@ class PictureBox extends React.Component {
               onLoad={() => console.log("load")}
             />
             <SpotArea spot={combo.spot} />
+            <PictureModeToggle
+              onClick={this.togglePictureMode}
+              pictureMode={pictureMode}
+            />
             <PictureCredits
               picture={combo.picture}
-              creditsOpened={this.state.creditsOpened}
-              onClick={this.togglePictureCredits}
+              detailsOpened={this.state.detailsOpened}
+              onClick={this.toggleCreditsDetails}
             />
           </React.Fragment>
         )}
