@@ -2,6 +2,7 @@ import React from "react";
 import injectSheet from "react-jss";
 
 import PictureCredits from "../PictureCredits/";
+import SpotArea from "../SpotArea/";
 
 const styles = theme => ({
   root: {
@@ -16,7 +17,7 @@ const styles = theme => ({
 class PictureBox extends React.Component {
   constructor(props) {
     super(props);
-    this.toggleCredits = this.toggleCredits.bind(this);
+    this.togglePictureCredits = this.togglePictureCredits.bind(this);
     this.state = {
       creditsOpened: false
     };
@@ -28,8 +29,7 @@ class PictureBox extends React.Component {
     }_800.jpeg`;
   }
 
-  toggleCredits() {
-    console.log("toggleCredits");
+  togglePictureCredits() {
     this.setState(prevState => ({
       creditsOpened: !prevState.creditsOpened
     }));
@@ -38,6 +38,7 @@ class PictureBox extends React.Component {
   render() {
     const combo = this.props.comboQuery.Combo;
     const classes = this.props.classes;
+
     return (
       <div className={classes.root}>
         {combo && (
@@ -48,10 +49,11 @@ class PictureBox extends React.Component {
               alt=""
               onLoad={() => console.log("load")}
             />
+            <SpotArea spot={combo.spot} />
             <PictureCredits
               picture={combo.picture}
               creditsOpened={this.state.creditsOpened}
-              onClick={this.toggleCredits}
+              onClick={this.togglePictureCredits}
             />
           </React.Fragment>
         )}
