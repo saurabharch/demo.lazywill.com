@@ -8,7 +8,7 @@ import globals from "./styles/global";
 
 import Home from "./components/Home/";
 import Info from "./components/Info/";
-import Browser from "./components/Browser/";
+//import Browser from "./components/Browser/";
 
 //import "typeface-open-sans";
 
