@@ -1,5 +1,6 @@
 import React from "react";
 import injectSheet from "react-jss";
+import { CircularProgress } from "material-ui/Progress";
 
 import PictureCredits from "../PictureCredits/";
 import SpotArea from "../SpotArea/";
@@ -23,6 +24,13 @@ const styles = theme => ({
     ".picture-mode &": {
       display: "none"
     }
+  },
+  progress: {
+    color: "#ffffff",
+    position: "absolute",
+    top: "50%",
+    right: "50%",
+    transform: "translate(50%,-50%)"
   }
 });
 
@@ -32,17 +40,61 @@ class PictureBox extends React.Component {
 
     this.state = {
       detailsOpened: false,
-      pictureMode: false
+      pictureMode: false,
+      pictureLoading: false
     };
 
     this.toggleCreditsDetails = this.toggleCreditsDetails.bind(this);
     this.togglePictureMode = this.togglePictureMode.bind(this);
+    this.togglePictureLoading = this.togglePictureLoading.bind(this);
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const prevCombo = prevProps.comboQuery.Combo;
+    const combo = this.props.comboQuery.Combo;
+
+    if (prevCombo !== combo) {
+      if (prevCombo === undefined || prevCombo.picture !== combo.picture) {
+        this.setState(prevState => ({
+          pictureLoading: true
+        }));
+      }
+    }
   }
 
   getPictureSrc(combo) {
     return `https://d3nstmfkiycslv.cloudfront.net/${combo.picture.arangoKey}_${
       combo.picture.hash
-    }_800.jpeg`;
+    }_${this.getPictureSize()}.jpeg`;
+  }
+
+  getPictureSize() {
+    const windowWidth = window.innerWidth;
+    const windowHeigh = window.innerHeight;
+    const minDimension = windowWidth > windowHeigh ? windowHeigh : windowWidth;
+
+    if (minDimension <= 400) {
+      return "400";
+    } else if (minDimension <= 600) {
+      return "600";
+    } else if (minDimension <= 800) {
+      return "800";
+    } else {
+      return "1000";
+    }
+  }
+
+  getSpot(spot) {
+    if (this.state.pictureLoading) {
+      return {
+        x: 40,
+        y: 40,
+        width: 20,
+        height: 20
+      };
+    } else {
+      return spot;
+    }
   }
 
   toggleCreditsDetails() {
@@ -54,6 +106,12 @@ class PictureBox extends React.Component {
   togglePictureMode() {
     this.setState(prevState => ({
       pictureMode: !prevState.pictureMode
+    }));
+  }
+
+  togglePictureLoading() {
+    this.setState(prevState => ({
+      pictureLoading: !prevState.pictureLoading
     }));
   }
 
@@ -74,9 +132,9 @@ class PictureBox extends React.Component {
               src={this.getPictureSrc(combo)}
               className={classes.picture}
               alt=""
-              onLoad={() => console.log("load")}
+              onLoad={this.togglePictureLoading}
             />
-            <SpotArea spot={combo.spot} />
+            <SpotArea spot={this.getSpot(combo.spot)} />
             <PictureModeToggle
               onClick={this.togglePictureMode}
               pictureMode={pictureMode}
@@ -89,6 +147,13 @@ class PictureBox extends React.Component {
               detailsOpened={this.state.detailsOpened}
               onClick={this.toggleCreditsDetails}
             />
+            {this.state.pictureLoading && (
+              <CircularProgress
+                className={classes.progress}
+                thickness={6}
+                size={30}
+              />
+            )}
           </React.Fragment>
         )}
       </div>

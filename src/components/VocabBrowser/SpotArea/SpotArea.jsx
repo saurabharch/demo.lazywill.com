@@ -18,7 +18,7 @@ const styles = theme => ({
     borderRadius: "4px",
     border: "2px dotted #fff",
     boxShadow: "0 0 0 1000px rgba(0,0,0,.4)",
-    transition: "all .5s"
+    transition: "all .3s"
   }
 });
 

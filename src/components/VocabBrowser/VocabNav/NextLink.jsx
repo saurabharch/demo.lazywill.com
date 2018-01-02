@@ -27,7 +27,7 @@ const styles = theme => ({
   label: {
     marginTop: "-3px",
     "& svg": {
-      margin: "5px 0 0 5px"
+      margin: "6px 0 0 5px"
     }
   }
 });
