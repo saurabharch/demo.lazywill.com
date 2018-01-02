@@ -6,8 +6,14 @@ import normalize from "normalize-jss";
 import theme from "./styles/theme";
 import globals from "./styles/global";
 
-import Home from "./components/Home/";
-import Info from "./components/Info/";
+import asyncComponent from "./components/AsyncComponent";
+//import Home from "./components/Home/";
+//import Info from "./components/Info/";
+
+const AsyncBrowse = asyncComponent(() => import("./components/Browser/"));
+const AsyncHome = asyncComponent(() => import("./components/Home/"));
+const AsyncInfo = asyncComponent(() => import("./components/Info/"));
+
 //import Browser from "./components/Browser/";
 
 //import "typeface-open-sans";
@@ -18,8 +24,8 @@ class App extends Component {
       <MuiThemeProvider theme={theme}>
         <div className="App">
           <Switch>
-            <Route exact path="/" component={Home} />
-            <Route path="/info" component={Info} />
+            <Route exact path="/" component={AsyncBrowse} />
+            <Route path="/info" component={AsyncInfo} />
           </Switch>
         </div>
       </MuiThemeProvider>
