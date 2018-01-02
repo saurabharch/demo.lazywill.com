@@ -23,7 +23,8 @@ const theme = createMuiTheme({
     primary: primary,
     type: "dark",
     background: {
-      accent: "#8BB82E",
+      green: "#709425",
+      blue: "#2D949F",
       first: "#383a30",
       second: "#3e4035",
       third: "#4d4f44",

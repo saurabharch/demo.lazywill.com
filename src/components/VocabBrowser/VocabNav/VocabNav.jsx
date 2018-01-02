@@ -1,31 +1,24 @@
 import React from "react";
 import injectSheet from "react-jss";
-import ArrowForward from "material-ui-icons/ArrowForward";
-import InfoOutline from "material-ui-icons/InfoOutline";
 
-import BlockButton from "../../Common/BlockButton";
+import NextLink from "./NextLink";
+import InfoLink from "./InfoLink";
 
 const styles = theme => ({
   nav: {
     bottom: 0,
-    display: "flex",
-    flexDirection: "row",
     height: "60px",
-    position: "fixed",
-    width: "100%"
+    left: 0,
+    position: "absolute",
+    right: 0
   }
 });
 
 const VocabNav = ({ classes, ...props }) => {
   return (
     <nav className={classes.nav}>
-      <BlockButton look="squareDark">
-        <InfoOutline />
-      </BlockButton>
-      <BlockButton look="fullGreen" onClick={props.onNextClick}>
-        next
-        <ArrowForward />
-      </BlockButton>
+      <InfoLink onClick={() => console.log("info")} />
+      <NextLink onClick={() => console.log("next")} />
     </nav>
   );
 };

@@ -14,7 +14,7 @@ const styles = theme => ({
 const SquareButton = props => {
   const { onClick, classes, children } = props;
   return (
-    <BlockButton onClick={onClick} classes={{ root: classes.root }}>
+    <BlockButton {...props} onClick={onClick} classes={{ root: classes.root }}>
       {children}
     </BlockButton>
   );

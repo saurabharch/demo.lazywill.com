@@ -22,7 +22,7 @@ const styles = theme => ({
 const BlockButton = props => {
   const { classes, children, onClick } = props;
   return (
-    <Button classes={{ root: classes.root }} onClick={onClick}>
+    <Button {...props} classes={{ root: classes.root }} onClick={onClick}>
       {children}
     </Button>
   );

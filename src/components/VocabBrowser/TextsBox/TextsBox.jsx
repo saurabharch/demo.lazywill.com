@@ -6,7 +6,7 @@ const styles = theme => ({
   root: {
     color: "#fff",
     fontSize: "1em",
-    padding: "1em 2em 2em",
+    padding: "1em 1.5em 2em",
     width: "100%"
   },
   entry: {

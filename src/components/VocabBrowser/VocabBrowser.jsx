@@ -14,15 +14,6 @@ const styles = theme => ({
     left: 0,
     right: 0,
     overflow: "auto"
-  },
-  vocabBox: {
-    position: "absolute",
-    background: "red",
-    top: 0,
-    bottom: "70px",
-    left: 0,
-    right: 0,
-    overflow: "auto"
   }
 });
 

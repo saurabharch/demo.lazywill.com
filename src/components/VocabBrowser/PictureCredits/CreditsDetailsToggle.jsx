@@ -1,7 +1,7 @@
 import React from "react";
 import { withStyles } from "material-ui/styles";
 import SquareButton from "../../Common/SquareButton";
-import InfoOutline from "material-ui-icons/InfoOutline";
+import Copyright from "material-ui-icons/Copyright";
 import Close from "material-ui-icons/Close";
 
 const styles = theme => ({
@@ -34,7 +34,7 @@ const CreditsDetailsToggle = props => {
 
   return (
     <SquareButton classes={{ root: classes.root }} onClick={onClick}>
-      {detailsOpened ? <Close /> : <InfoOutline />}
+      {detailsOpened ? <Close /> : <Copyright />}
     </SquareButton>
   );
 };
