@@ -14,11 +14,13 @@ const styles = theme => ({
   }
 });
 
-const VocabNav = ({ classes, ...props }) => {
+const VocabNav = props => {
+  const { classes, comboIsLoading, onNextClick } = props;
+
   return (
     <nav className={classes.nav}>
       <InfoLink onClick={() => console.log("info")} />
-      <NextLink onClick={() => console.log("next")} />
+      <NextLink onClick={onNextClick} comboIsLoading={comboIsLoading} />
     </nav>
   );
 };

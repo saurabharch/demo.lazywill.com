@@ -20,16 +20,22 @@ const styles = theme => ({
 class VocabBrowser extends React.Component {
   constructor(props) {
     super(props);
-    this.changeActiveCombo = this.changeActiveCombo.bind(this);
     this.state = {
       unseenCombosIds: null,
       seenCombosIds: null,
-      activeComboId: null
+      activeComboId: null,
+      comboIsLoading: false
     };
+
+    this.changeActiveCombo = this.changeActiveCombo.bind(this);
+    this.toggleComboIsLoading = this.toggleComboIsLoading.bind(this);
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (this.props.combosQuery.allComboes.length && this.props !== prevProps) {
+    if (
+      this.props.combosQuery.allComboes.length &&
+      this.props.combosQuery.allComboes !== prevProps.combosQuery.allComboes
+    ) {
       this.setState((prevState, props) => {
         const combosIds = props.combosQuery.allComboes.map(obj => obj.id);
         const randomComboId = this.getRandomComboId(combosIds);
@@ -41,7 +47,8 @@ class VocabBrowser extends React.Component {
         return {
           unseenCombosIds: combosIds,
           seenCombosIds: seenCombosIds,
-          activeComboId: randomComboId
+          activeComboId: randomComboId,
+          comboIsLoading: true
         };
       });
     }
@@ -56,31 +63,45 @@ class VocabBrowser extends React.Component {
       const randomComboId = this.getRandomComboId(prevState.unseenCombosIds);
       const unseenCombosIds = [...prevState.unseenCombosIds];
       unseenCombosIds.splice(unseenCombosIds.indexOf(randomComboId), 1);
+
       return {
         unseenCombosIds: unseenCombosIds,
         seenCombosIds: [...prevState.seenCombosIds, randomComboId],
-        activeComboId: randomComboId
+        activeComboId: randomComboId,
+        comboIsLoading: true
       };
     });
+  }
+
+  toggleComboIsLoading() {
+    this.setState(prevState => ({
+      comboIsLoading: !prevState.comboIsLoading
+    }));
   }
 
   render() {
     const { classes } = this.props;
 
-    // if (this.props.comboQuery && this.props.comboQuery.loading) {
-    //   return <div>Loading</div>;
-    // }
-    // if (this.props.comboQuery && this.props.comboQuery.error) {
-    //   return <div>Error</div>;
-    // }
-    // const comoboToRender = this.props.comboQuery.Combo;
+    if (this.props.combosQuery && this.props.combosQuery.loading) {
+      return <div>Loading</div>;
+    }
+    if (this.props.combosQuery && this.props.combosQuery.error) {
+      return <div>Error</div>;
+    }
 
     return (
       <div className={classes.root}>
         {this.state.activeComboId && (
           <React.Fragment>
-            <VocabBox comboId={this.state.activeComboId} />
-            <VocabNav onNextClick={this.changeActiveCombo} />
+            <VocabBox
+              comboId={this.state.activeComboId}
+              toggleIsLoading={this.toggleComboIsLoading}
+              isLoading={this.state.comboIsLoading}
+            />
+            <VocabNav
+              onNextClick={this.changeActiveCombo}
+              comboIsLoading={this.state.comboIsLoading}
+            />
           </React.Fragment>
         )}
       </div>

@@ -17,11 +17,15 @@ const styles = theme => ({
 });
 
 class VocabBox extends React.Component {
+  componentDidUpdate(prevProps, prevState) {
+    if (this.props.isLoading && !this.props.comboQuery.loading) {
+      this.props.toggleIsLoading();
+    }
+  }
+
   render() {
     const { classes } = this.props;
     const comboQuery = this.props.comboQuery;
-
-    //console.log(comboQuery);
 
     return (
       <div className={classes.root}>

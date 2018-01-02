@@ -1,6 +1,7 @@
 import React from "react";
-import { withStyles } from "material-ui/styles";
 import { Link } from "react-router-dom";
+import { withStyles } from "material-ui/styles";
+import { CircularProgress } from "material-ui/Progress";
 import Color from "color";
 
 import BlockButton from "../../Common/BlockButton";
@@ -18,20 +19,39 @@ const styles = theme => ({
         .darken(0.2)
         .string()
     }
+  },
+  progress: {
+    color: "#ffffff",
+    margin: "-15px 0 0 5px"
+  },
+  label: {
+    marginTop: "-3px",
+    "& svg": {
+      margin: "5px 0 0 5px"
+    }
   }
 });
 
 const NextLink = props => {
-  const { classes, onClick } = props;
+  const { classes, onClick, comboIsLoading } = props;
 
   return (
     <BlockButton
       to="#"
       component={Link}
-      classes={{ root: classes.root }}
+      classes={{ root: classes.root, label: classes.label }}
       onClick={onClick}
     >
-      next <ArrowForward />
+      {!comboIsLoading ? "next" : "loading"}
+      {comboIsLoading ? (
+        <CircularProgress
+          className={classes.progress}
+          thickness={6}
+          size={24}
+        />
+      ) : (
+        <ArrowForward />
+      )}
     </BlockButton>
   );
 };

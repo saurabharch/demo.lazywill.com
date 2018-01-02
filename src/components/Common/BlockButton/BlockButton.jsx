@@ -12,17 +12,23 @@ const styles = theme => ({
     color: "white",
     fontSize: "1.8em",
     fontWeight: 300,
+    fontFamily: "inherit",
     height: "100%",
     minWidth: 0,
     textTransform: "none",
     width: "100%"
-  }
+  },
+  label: {}
 });
 
 const BlockButton = props => {
   const { classes, children, onClick } = props;
   return (
-    <Button {...props} classes={{ root: classes.root }} onClick={onClick}>
+    <Button
+      {...props}
+      classes={{ root: classes.root, label: classes.label }}
+      onClick={onClick}
+    >
       {children}
     </Button>
   );
