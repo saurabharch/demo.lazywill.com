@@ -34,7 +34,7 @@ const Container = props => {
       <MuiThemeProvider theme={theme}>
         <BrowserRouter>
           <Switch>
-            <Route exact path="/" component={AsyncBrowser} />
+            <Route exact path="/browser" component={AsyncBrowser} />
             <Route path="/info" component={AsyncInfo} />
           </Switch>
         </BrowserRouter>
