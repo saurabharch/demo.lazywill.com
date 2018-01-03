@@ -2,17 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import whatInput from "what-input"; // eslint-disable-line no-unused-vars
 import App from "./App";
-//import { BrowserRouter } from "react-router-dom";
 import registerServiceWorker from "./registerServiceWorker";
-
-// const httpLink = new HttpLink({
-//   uri: "https://api.graph.cool/simple/v1/cjbgvexpt0hsm0176hz0flrix"
-// });
-
-// const client = new ApolloClient({
-//   link: httpLink,
-//   cache: new InMemoryCache()
-// });
 
 ReactDOM.render(
   <App />,

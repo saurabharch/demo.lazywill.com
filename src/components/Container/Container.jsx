@@ -1,9 +1,9 @@
 import React from "react";
-import { Switch, Route } from "react-router-dom";
 import { MuiThemeProvider } from "material-ui/styles";
 import injectSheet from "react-jss";
 import normalize from "normalize-jss";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+import loadable from "loadable-components";
 
 import { ApolloProvider } from "react-apollo";
 import { ApolloClient } from "apollo-client";
@@ -12,7 +12,12 @@ import { InMemoryCache } from "apollo-cache-inmemory";
 
 import theme from "../../styles/theme";
 import globals from "../../styles/global";
-import Browser from "../Browser/";
+
+//import Browser from "../Browser/";
+//import Info from "../Info/";
+
+const AsyncBrowser = loadable(() => import("../Browser/"));
+const AsyncInfo = loadable(() => import("../Info/"));
 
 const httpLink = new HttpLink({
   uri: "https://api.graph.cool/simple/v1/cjbgvexpt0hsm0176hz0flrix"
@@ -23,16 +28,19 @@ const client = new ApolloClient({
   cache: new InMemoryCache()
 });
 
-const Home = props => {
+const Container = props => {
   return (
     <ApolloProvider client={client}>
       <MuiThemeProvider theme={theme}>
         <BrowserRouter>
-          <Browser />
+          <Switch>
+            <Route exact path="/" component={AsyncBrowser} />
+            <Route path="/info" component={AsyncInfo} />
+          </Switch>
         </BrowserRouter>
       </MuiThemeProvider>
     </ApolloProvider>
   );
 };
 
-export default injectSheet(normalize)(injectSheet(globals)(Home));
+export default injectSheet(normalize)(injectSheet(globals)(Container));
