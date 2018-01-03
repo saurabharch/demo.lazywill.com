@@ -3,6 +3,7 @@ import { Switch, Route } from "react-router-dom";
 import { MuiThemeProvider } from "material-ui/styles";
 import injectSheet from "react-jss";
 import normalize from "normalize-jss";
+import { BrowserRouter } from "react-router-dom";
 
 import { ApolloProvider } from "react-apollo";
 import { ApolloClient } from "apollo-client";
@@ -26,7 +27,9 @@ const Home = props => {
   return (
     <ApolloProvider client={client}>
       <MuiThemeProvider theme={theme}>
-        <Browser />
+        <BrowserRouter>
+          <Browser />
+        </BrowserRouter>
       </MuiThemeProvider>
     </ApolloProvider>
   );

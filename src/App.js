@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Switch, Route } from "react-router-dom";
+//import { Switch, Route } from "react-router-dom";
 //import { MuiThemeProvider } from "material-ui/styles";
 //import injectSheet from "react-jss";
 //import normalize from "normalize-jss";
@@ -10,9 +10,9 @@ import asyncComponent from "./components/AsyncComponent";
 //import Home from "./components/Home/";
 //import Info from "./components/Info/";
 
-const AsyncBrowse = asyncComponent(() => import("./components/Browser/"));
+//const AsyncBrowse = asyncComponent(() => import("./components/Browser/"));
 const AsyncHome = asyncComponent(() => import("./components/Home/"));
-const AsyncInfo = asyncComponent(() => import("./components/Info/"));
+//const AsyncInfo = asyncComponent(() => import("./components/Info/"));
 
 //import Browser from "./components/Browser/";
 
@@ -22,10 +22,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Switch>
-          <Route exact path="/" component={AsyncHome} />
-          <Route path="/info" component={AsyncInfo} />
-        </Switch>
+        <AsyncHome />
       </div>
     );
   }

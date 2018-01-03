@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import whatInput from "what-input"; // eslint-disable-line no-unused-vars
 import App from "./App";
-import { BrowserRouter } from "react-router-dom";
+//import { BrowserRouter } from "react-router-dom";
 import registerServiceWorker from "./registerServiceWorker";
 
 // const httpLink = new HttpLink({
@@ -15,9 +15,7 @@ import registerServiceWorker from "./registerServiceWorker";
 // });
 
 ReactDOM.render(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>,
+  <App />,
   document.getElementById("app"),
   revealEntryBtnOnSplashScreen
 );
