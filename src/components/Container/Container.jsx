@@ -14,13 +14,16 @@ import { InMemoryCache } from "apollo-cache-inmemory";
 import theme from "../../styles/theme";
 import globals from "../../styles/global";
 
-const LoadableBrowser = Loadable({
-  loader: () => import("../Browser"),
+const AsyncHome = Loadable({
+  loader: () => import("../Home/"),
   loading: Loading
 });
-
-const LoadableInfo = Loadable({
-  loader: () => import("../Info"),
+const AsyncBrowser = Loadable({
+  loader: () => import(/* webpackChunkName: "browser" */ "../Browser/"),
+  loading: Loading
+});
+const AsyncSubscribe = Loadable({
+  loader: () => import("../Subscribe/"),
   loading: Loading
 });
 
@@ -39,8 +42,9 @@ const Container = props => {
       <MuiThemeProvider theme={theme}>
         <BrowserRouter>
           <Switch>
-            <Route exact path="/" component={LoadableBrowser} />
-            <Route path="/info" component={LoadableInfo} />
+            <Route exact path="/" component={AsyncHome} />
+            <Route exact path="/browse" component={AsyncBrowser} />
+            <Route path="/subs" component={AsyncSubscribe} />
           </Switch>
         </BrowserRouter>
       </MuiThemeProvider>

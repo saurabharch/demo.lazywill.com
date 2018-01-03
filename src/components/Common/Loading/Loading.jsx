@@ -1,7 +1,11 @@
 import React from "react";
 
-const Loading = () => {
-  return <div>LOADING....</div>;
+const Loading = props => {
+  if (props.error) {
+    return <div>Error!</div>;
+  } else {
+    return <div>LOADING...</div>;
+  }
 };
 
 export default Loading;
