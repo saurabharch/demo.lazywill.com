@@ -33,11 +33,7 @@
     #splash {
       background: #4d4f44;
       bottom: 0;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
       left: 0;
-      height: 100vH;
       position: absolute;
       padding: 2em 3em 3em;
       top: 0;
@@ -50,6 +46,11 @@
     #splash .inner {
       max-width: 500px;
       margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 100%;
+      padding: 3em 0;
     }
 
     #splash h1 {
@@ -62,7 +63,7 @@
 
     #splash .logo {
       margin: 0 auto 1.2em;
-      max-width: 200px;
+      max-width: 160px;
       max-height: 120px;
       width: 80%;
       height: auto;
@@ -91,10 +92,10 @@
 
     #splash .control {
       height: 130px;
-      margin: 0 -3em 0;
-      padding: 20px 0;
+      margin: .5em -3em 0;
       position: relative;
       overflow: hidden;
+      flex-shrink: 0;
     }
 
     #splash .loading {
@@ -115,6 +116,7 @@
       cursor: pointer;
       display: inline-block;
       height: 100px;
+
       left: 150%;
       overflow: hidden;
       padding: 20px;
@@ -200,7 +202,7 @@
         <b>vocabulary</b> learning app for declared
         <b>visual</b> learners.
       </p>
-      <p>Take a look and share with me what you think</p>
+      <!-- <p>Take a look and share with me what you think</p>
       <p class="sign">
         <span class="avatar">
           <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid meet"
@@ -232,7 +234,7 @@
         </span>
         lazy
         <b>Will</b>
-      </p>
+      </p> -->
       <div class="control">
         <svg class="loading" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
           version="1.0" width="100%" height="100%" viewBox="0 0 128 16" xml:space="preserve">

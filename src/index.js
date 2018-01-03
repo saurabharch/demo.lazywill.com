@@ -1,11 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import whatInput from "what-input"; // eslint-disable-line no-unused-vars
-import App from "./App";
+import AppLoader from "./AppLoader";
 import registerServiceWorker from "./registerServiceWorker";
 
 ReactDOM.render(
-  <App />,
+  <AppLoader />,
   document.getElementById("app"),
   revealEntryBtnOnSplashScreen
 );

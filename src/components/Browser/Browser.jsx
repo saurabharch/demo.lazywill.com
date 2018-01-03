@@ -31,6 +31,29 @@ class Browser extends React.Component {
     this.toggleComboIsLoading = this.toggleComboIsLoading.bind(this);
   }
 
+  componentDidMount() {
+    if (
+      this.props.combosQuery.allComboes &&
+      this.props.combosQuery.allComboes.length
+    ) {
+      this.setState((prevState, props) => {
+        const combosIds = props.combosQuery.allComboes.map(obj => obj.id);
+        const randomComboId = this.getRandomComboId(combosIds);
+        const seenCombosIds = combosIds.splice(
+          combosIds.indexOf(randomComboId),
+          1
+        );
+
+        return {
+          unseenCombosIds: combosIds,
+          seenCombosIds: seenCombosIds,
+          activeComboId: randomComboId,
+          comboIsLoading: true
+        };
+      });
+    }
+  }
+
   componentDidUpdate(prevProps, prevState) {
     if (
       this.props.combosQuery.allComboes.length &&
@@ -98,10 +121,10 @@ class Browser extends React.Component {
               toggleIsLoading={this.toggleComboIsLoading}
               isLoading={this.state.comboIsLoading}
             />
-            <VocabNav
+            {/* <VocabNav
               onNextClick={this.changeActiveCombo}
               comboIsLoading={this.state.comboIsLoading}
-            />
+            /> */}
           </React.Fragment>
         )}
       </div>

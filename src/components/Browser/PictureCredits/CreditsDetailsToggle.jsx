@@ -1,6 +1,6 @@
 import React from "react";
 import { withStyles } from "material-ui/styles";
-import SquareButton from "../../Common/SquareButton";
+import SquareButton from "../../shared/SquareButton";
 import Copyright from "material-ui-icons/Copyright";
 import Close from "material-ui-icons/Close";
 

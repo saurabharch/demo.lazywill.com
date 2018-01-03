@@ -4,20 +4,24 @@ import { withStyles } from "material-ui/styles";
 import { CircularProgress } from "material-ui/Progress";
 import Color from "color";
 
-import BlockButton from "../../shared/BlockButton";
+import BlockButton from "../shared/BlockButton";
 import ArrowForward from "material-ui-icons/ArrowForward";
 
 const styles = theme => ({
   root: {
     background: theme.palette.background.green,
-    left: "60px",
+    left: "100%",
     position: "absolute",
     right: 0,
     width: "auto",
+    transition: "all .5s",
     "&:hover": {
       background: Color(theme.palette.background.green)
         .darken(0.2)
         .string()
+    },
+    ".browse-screen &": {
+      left: "60px"
     }
   },
   progress: {

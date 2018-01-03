@@ -5,7 +5,7 @@ import { CircularProgress } from "material-ui/Progress";
 import PictureCredits from "../PictureCredits/";
 import SpotArea from "../SpotArea/";
 import PictureModeToggle from "./PictureModeToggle";
-import SvgEl from "../../Common/SvgEl/";
+import SvgEl from "../../shared/SvgEl/";
 import { LOGOS } from "../../../constants/logos";
 
 const styles = theme => ({

@@ -3,7 +3,7 @@ import { withStyles } from "material-ui/styles";
 import { Link } from "react-router-dom";
 import Color from "color";
 
-import SquareButton from "../../shared/SquareButton";
+import SquareButton from "../shared/SquareButton";
 import InfoOutline from "material-ui-icons/InfoOutline";
 
 const styles = theme => ({
