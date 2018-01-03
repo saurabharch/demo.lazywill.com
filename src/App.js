@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { Switch, Route } from "react-router-dom";
-import { MuiThemeProvider } from "material-ui/styles";
-import injectSheet from "react-jss";
-import normalize from "normalize-jss";
-import theme from "./styles/theme";
-import globals from "./styles/global";
+//import { MuiThemeProvider } from "material-ui/styles";
+//import injectSheet from "react-jss";
+//import normalize from "normalize-jss";
+//import theme from "./styles/theme";
+//import globals from "./styles/global";
 
 import asyncComponent from "./components/AsyncComponent";
 //import Home from "./components/Home/";
@@ -21,16 +21,14 @@ const AsyncInfo = asyncComponent(() => import("./components/Info/"));
 class App extends Component {
   render() {
     return (
-      <MuiThemeProvider theme={theme}>
-        <div className="App">
-          <Switch>
-            <Route exact path="/" component={AsyncBrowse} />
-            <Route path="/info" component={AsyncInfo} />
-          </Switch>
-        </div>
-      </MuiThemeProvider>
+      <div className="App">
+        <Switch>
+          <Route exact path="/" component={AsyncHome} />
+          <Route path="/info" component={AsyncInfo} />
+        </Switch>
+      </div>
     );
   }
 }
 
-export default injectSheet(normalize)(injectSheet(globals)(App));
+export default App;
