@@ -1,11 +1,15 @@
 import React, { Component } from "react";
-import loadable from "loadable-components";
+import Loadable from "react-loadable";
+import Loading from "./components/Common/Loading/";
 
-const AsyncContainer = loadable(() => import("./components/Container/"));
+const LoadableContainer = Loadable({
+  loader: () => import("./components/Container/"),
+  loading: Loading
+});
 
 class App extends Component {
   render() {
-    return <AsyncContainer />;
+    return <LoadableContainer />;
   }
 }
 
