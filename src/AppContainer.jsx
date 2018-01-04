@@ -28,16 +28,85 @@ const AsyncNav = Loadable({
   loading: Loading
 });
 
-class Container extends React.Component {
+class AppContainer extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      unseenCombos: null,
+      seenCombos: null,
+      activeCombo: null
+    };
+
+    this.changeActiveCombo = this.changeActiveCombo.bind(this);
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (
+      this.props.combosQuery.allComboes !== prevProps.combosQuery.allComboes &&
+      this.props.combosQuery.allComboes.length
+    ) {
+      this.setState((prevState, props) => {
+        const allCombos = props.combosQuery.allComboes;
+        const randomCombo = this.getRandomCombo(allCombos);
+        const randomComboIndex = allCombos.findIndex(
+          combo => combo.id === randomCombo.id
+        );
+        const unseenCombos = [...allCombos];
+        const seenCombos = unseenCombos.splice(randomComboIndex, 1);
+
+        return {
+          unseenCombos: unseenCombos,
+          seenCombos: seenCombos,
+          activeCombo: randomCombo
+        };
+      });
+    }
+  }
+
+  getRandomCombo(combos) {
+    return combos[Math.floor(Math.random() * combos.length)];
+  }
+
+  changeActiveCombo() {
+    this.setState(prevState => {
+      const randomCombo = this.getRandomCombo(this.state.unseenCombos);
+      const randomComboIndex = this.state.unseenCombos.findIndex(
+        combo => combo.id === randomCombo.id
+      );
+      const unseenCombos = [...this.state.unseenCombos];
+      unseenCombos.splice(unseenCombos.indexOf(randomComboIndex), 1);
+
+      return {
+        unseenCombos: unseenCombos,
+        seenCombos: [...this.state.seenCombos, randomCombo],
+        activeCombo: randomCombo
+      };
+    });
+  }
+
   render() {
+    if (this.props.combosQuery && this.props.combosQuery.loading) {
+      return <div>Loading</div>;
+    }
+    if (this.props.combosQuery && this.props.combosQuery.error) {
+      return <div>Error</div>;
+    }
+
+    const entries = this.props.combosQuery.allComboes.map(el => el.entry.text);
+    console.log(entries);
+
     return (
       <MuiThemeProvider theme={theme}>
         <Switch>
           <Route exact path="/" component={AsyncHome} />
-          <Route exact path="/browse" component={AsyncBrowser} />
+          <Route
+            exact
+            path="/browse"
+            render={() => <AsyncBrowser combo={this.state.activeCombo} />}
+          />
           <Route path="/subs" component={AsyncSubscribe} />
         </Switch>
-        <AsyncNav />
+        <AsyncNav onNextClick={this.changeActiveCombo} />
       </MuiThemeProvider>
     );
   }
@@ -81,5 +150,5 @@ const COMBOS_QUERY = gql`
 `;
 
 export default graphql(COMBOS_QUERY, { name: "combosQuery" })(
-  injectSheet(normalize)(injectSheet(globals)(Container))
+  injectSheet(normalize)(injectSheet(globals)(AppContainer))
 );

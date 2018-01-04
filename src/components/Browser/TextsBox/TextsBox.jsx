@@ -1,6 +1,5 @@
 import React from "react";
 import injectSheet from "react-jss";
-//import PlayCircleOutline from "material-ui-icons/PlayCircleOutline";
 
 const styles = theme => ({
   root: {
@@ -39,8 +38,8 @@ const styles = theme => ({
   }
 });
 
-const TextsBox = ({ comboQuery, classes, ...props }) => {
-  const combo = comboQuery.Combo;
+const TextsBox = props => {
+  const { combo, classes } = props;
 
   return (
     <div className={classes.root}>

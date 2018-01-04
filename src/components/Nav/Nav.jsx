@@ -22,13 +22,13 @@ const ContextNav = props => {
     return currentRoute === "" ? "home" : currentRoute;
   }
 
-  const { children, classes, location } = props;
+  const { classes, location, onNextClick } = props;
   const { pathname } = location;
   const currentRoute = getCurrentRoute(pathname);
 
   return (
     <nav className={`${classes.root} ${currentRoute}-screen`}>
-      <NextLink currentRoute={currentRoute} />
+      <NextLink currentRoute={currentRoute} onClick={onNextClick} />
       <ChangeScreenLink currentRoute={currentRoute} />
     </nav>
   );

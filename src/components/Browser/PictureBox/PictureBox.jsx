@@ -7,6 +7,7 @@ import SpotArea from "../SpotArea/";
 import PictureModeToggle from "./PictureModeToggle";
 import SvgEl from "../../shared/SvgEl/";
 import { LOGOS } from "../../../constants/logos";
+import pictureLoading from "../../../images/pictureloading.gif";
 
 const styles = theme => ({
   root: {
@@ -41,28 +42,46 @@ class PictureBox extends React.Component {
     this.state = {
       detailsOpened: false,
       pictureMode: false,
-      pictureLoading: false
+      pictureSrc: null
     };
 
     this.toggleCreditsDetails = this.toggleCreditsDetails.bind(this);
     this.togglePictureMode = this.togglePictureMode.bind(this);
-    this.togglePictureLoading = this.togglePictureLoading.bind(this);
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    const prevCombo = prevProps.comboQuery.Combo;
-    const combo = this.props.comboQuery.Combo;
+  componentDidMount() {
+    this.setState(() => ({
+      pictureSrc: this.getPictureSrc(this.props.combo)
+    }));
+  }
 
-    if (prevCombo !== combo) {
-      if (prevCombo === undefined || prevCombo.picture !== combo.picture) {
-        this.setState(prevState => ({
-          pictureLoading: true
-        }));
+  componentWillReceiveProps(nextProps) {
+    if (this.props.combo !== nextProps.combo) {
+      if (this.props.combo.picture !== nextProps.combo.picture) {
+        this.setState(
+          () => ({
+            pictureSrc: this.getPictureSrc(null)
+          }),
+          this.updatePictureSrc
+        );
       }
     }
   }
 
+  updatePictureSrc() {
+    setTimeout(() => {
+      this.setState(() => {
+        return {
+          pictureSrc: this.getPictureSrc(this.props.combo)
+        };
+      });
+    }, 5);
+  }
+
   getPictureSrc(combo) {
+    if (!combo) {
+      return pictureLoading;
+    }
     return `https://d3nstmfkiycslv.cloudfront.net/${combo.picture.arangoKey}_${
       combo.picture.hash
     }_${this.getPictureSize()}.jpeg`;
@@ -109,14 +128,8 @@ class PictureBox extends React.Component {
     }));
   }
 
-  togglePictureLoading() {
-    this.setState(prevState => ({
-      pictureLoading: !prevState.pictureLoading
-    }));
-  }
-
   render() {
-    const combo = this.props.comboQuery.Combo;
+    const combo = this.props.combo;
     const classes = this.props.classes;
     const pictureMode = this.state.pictureMode;
 
@@ -129,12 +142,11 @@ class PictureBox extends React.Component {
         {combo && (
           <React.Fragment>
             <img
-              src={this.getPictureSrc(combo)}
+              src={this.state.pictureSrc}
               className={classes.picture}
               alt=""
-              onLoad={this.togglePictureLoading}
             />
-            <SpotArea spot={this.getSpot(combo.spot)} />
+            <SpotArea spot={combo.spot} />
             <PictureModeToggle
               onClick={this.togglePictureMode}
               pictureMode={pictureMode}
@@ -147,13 +159,6 @@ class PictureBox extends React.Component {
               detailsOpened={this.state.detailsOpened}
               onClick={this.toggleCreditsDetails}
             />
-            {this.state.pictureLoading && (
-              <CircularProgress
-                className={classes.progress}
-                thickness={6}
-                size={30}
-              />
-            )}
           </React.Fragment>
         )}
       </div>
@@ -162,3 +167,11 @@ class PictureBox extends React.Component {
 }
 
 export default injectSheet(styles)(PictureBox);
+
+/* {this.state.pictureLoading && (
+              <CircularProgress
+                className={classes.progress}
+                thickness={6}
+                size={30}
+              />
+            )} */

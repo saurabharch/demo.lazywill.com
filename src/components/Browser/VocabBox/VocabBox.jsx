@@ -1,6 +1,4 @@
 import React from "react";
-import { graphql } from "react-apollo";
-import gql from "graphql-tag";
 import injectSheet from "react-jss";
 import PictureBox from "../PictureBox/";
 import TextsBox from "../TextsBox/";
@@ -16,64 +14,15 @@ const styles = theme => ({
   }
 });
 
-class VocabBox extends React.Component {
-  componentDidUpdate(prevProps, prevState) {
-    if (this.props.isLoading && !this.props.comboQuery.loading) {
-      this.props.toggleIsLoading();
-    }
-  }
+const VocabBox = props => {
+  const { classes, combo } = props;
 
-  render() {
-    const { classes } = this.props;
-    const comboQuery = this.props.comboQuery;
+  return (
+    <div className={classes.root}>
+      <PictureBox combo={combo} />
+      <TextsBox combo={combo} />
+    </div>
+  );
+};
 
-    return (
-      <div className={classes.root}>
-        <PictureBox comboQuery={comboQuery} />
-        <TextsBox comboQuery={comboQuery} />
-      </div>
-    );
-  }
-}
-
-const COMBO_QUERY = gql`
-  query ComboQuery($id: ID!) {
-    Combo(id: $id) {
-      id
-      entry {
-        text
-      }
-      meaning {
-        definition
-        type
-        key
-      }
-      picture {
-        arangoKey
-        hash
-        sourceName
-        sourceUrl
-        authorName
-        authorUrl
-        licenceName
-        licenceUrl
-      }
-      spot {
-        height
-        width
-        x
-        y
-        key
-      }
-      sentences {
-        id
-        text
-      }
-    }
-  }
-`;
-
-export default graphql(COMBO_QUERY, {
-  name: "comboQuery",
-  options: ({ comboId }) => ({ variables: { id: comboId } })
-})(injectSheet(styles)(VocabBox));
+export default injectSheet(styles)(VocabBox);
