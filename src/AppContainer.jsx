@@ -68,14 +68,14 @@ class AppContainer extends React.Component {
   }
 
   changeActiveCombo() {
-    this.setState(prevState => {
-      const randomCombo = this.getRandomCombo(this.state.unseenCombos);
-      const randomComboIndex = this.state.unseenCombos.findIndex(
-        combo => combo.id === randomCombo.id
-      );
-      const unseenCombos = [...this.state.unseenCombos];
-      unseenCombos.splice(unseenCombos.indexOf(randomComboIndex), 1);
+    const randomCombo = this.getRandomCombo(this.state.unseenCombos);
+    const randomComboIndex = this.state.unseenCombos.findIndex(
+      combo => combo.id === randomCombo.id
+    );
+    const unseenCombos = [...this.state.unseenCombos];
+    unseenCombos.splice(randomComboIndex, 1);
 
+    this.setState(prevState => {
       return {
         unseenCombos: unseenCombos,
         seenCombos: [...this.state.seenCombos, randomCombo],
@@ -91,9 +91,6 @@ class AppContainer extends React.Component {
     if (this.props.combosQuery && this.props.combosQuery.error) {
       return <div>Error</div>;
     }
-
-    const entries = this.props.combosQuery.allComboes.map(el => el.entry.text);
-    console.log(entries);
 
     return (
       <MuiThemeProvider theme={theme}>

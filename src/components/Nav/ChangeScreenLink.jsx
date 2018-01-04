@@ -5,7 +5,7 @@ import Color from "color";
 
 import SquareButton from "../shared/SquareButton";
 import ArrowForward from "material-ui-icons/ArrowForward";
-import Home from "material-ui-icons/Home";
+import InfoOutline from "material-ui-icons/InfoOutline";
 
 const styles = theme => ({
   root: {
@@ -45,7 +45,7 @@ const ChangeScreenLink = props => {
       onClick={onClick}
     >
       {currentRoute === "home" && <ArrowForward />}
-      {currentRoute === "browse" && <Home />}
+      {currentRoute === "browse" && <InfoOutline />}
     </SquareButton>
   );
 };
