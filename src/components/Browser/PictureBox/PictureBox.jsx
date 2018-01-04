@@ -1,6 +1,5 @@
 import React from "react";
 import injectSheet from "react-jss";
-import { CircularProgress } from "material-ui/Progress";
 
 import PictureCredits from "../PictureCredits/";
 import SpotArea from "../SpotArea/";
@@ -25,13 +24,6 @@ const styles = theme => ({
     ".picture-mode &": {
       display: "none"
     }
-  },
-  progress: {
-    color: "#ffffff",
-    position: "absolute",
-    top: "50%",
-    right: "50%",
-    transform: "translate(50%,-50%)"
   }
 });
 
@@ -167,11 +159,3 @@ class PictureBox extends React.Component {
 }
 
 export default injectSheet(styles)(PictureBox);
-
-/* {this.state.pictureLoading && (
-              <CircularProgress
-                className={classes.progress}
-                thickness={6}
-                size={30}
-              />
-            )} */

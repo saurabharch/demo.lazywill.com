@@ -7,6 +7,7 @@ import NextLink from "./NextLink";
 
 const styles = theme => ({
   root: {
+    background: theme.palette.background.third,
     bottom: 0,
     height: "60px",
     left: 0,
