@@ -11,6 +11,8 @@ import gql from "graphql-tag";
 import theme from "./styles/theme";
 import globals from "./styles/global";
 
+import Home from "./components/Home/";
+
 const AsyncHome = Loadable({
   loader: () => import("./components/Home/"),
   loading: Loading
