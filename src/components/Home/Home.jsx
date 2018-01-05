@@ -15,6 +15,7 @@ const styles = theme => ({
     right: 0,
     top: 0
   },
+  logo: {},
   textBox: {
     padding: "3em",
     maxWidth: "30em",
