@@ -26,7 +26,7 @@ const styles = theme => ({
   }
 });
 
-const ChangeScreenLink = props => {
+const HomeLink = props => {
   const { classes, onClick, currentRoute } = props;
 
   function getTarget(currentRoute) {
@@ -50,4 +50,4 @@ const ChangeScreenLink = props => {
   );
 };
 
-export default withStyles(styles)(ChangeScreenLink);
+export default withStyles(styles)(HomeLink);

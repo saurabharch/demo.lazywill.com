@@ -2,7 +2,7 @@ import React from "react";
 import injectSheet from "react-jss";
 import { withRouter } from "react-router";
 
-import ChangeScreenLink from "./ChangeScreenLink";
+import HomeLink from "./HomeLink";
 import NextLink from "./NextLink";
 
 const styles = theme => ({
@@ -30,7 +30,7 @@ const ContextNav = props => {
   return (
     <nav className={`${classes.root} ${currentRoute}-screen`}>
       <NextLink currentRoute={currentRoute} onClick={onNextClick} />
-      <ChangeScreenLink currentRoute={currentRoute} />
+      <HomeLink currentRoute={currentRoute} />
     </nav>
   );
 };

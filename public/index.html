@@ -60,18 +60,16 @@
     }
 
     #splash .logo {
-      margin: 0 auto 1.2em;
-      max-width: 160px;
-      max-height: 120px;
-      width: 80%;
-      height: auto;
+      margin: 10px auto 5px;
+      width: 100px;
+      height: 40px;
     }
 
     #splash p {
       line-height: 1.4em;
       font-size: 1.1em;
       color: #fff;
-      margin: 0 0 1.2em;
+      margin: 0;
       font-weight: 300;
       text-align: center;
     }
@@ -91,7 +89,7 @@
 
     #splash .control {
       height: 130px;
-      margin: .5em -3em 0;
+      margin: 2em -3em 0;
       position: relative;
       overflow: hidden;
       flex-shrink: 0;
@@ -160,11 +158,7 @@
       }
     }
 
-    @media (min-width: 1024px) {
-      #splash .logo {
-        max-width: 300px;
-      }
-    }
+    @media (min-width: 1024px) {}
 
     noscript {
       background: #d00;
@@ -186,7 +180,10 @@
       <noscript>
         You need to enable JavaScript to run this app!
       </noscript>
-      <h1>Welcome to</h1>
+      <p>
+        This is
+        <br />a sneak preview of
+      </p>
       <div class="logo">
         <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid meet"
           viewBox="0 0 300 120" width="100%" height="100%">
@@ -196,43 +193,10 @@
           </g>
         </svg>
       </div>
-      <p>
-        This is a small sneak preview of a coming
-        <b>vocabulary</b> learning app.
+      <p>A coming
+        <br />vocabulary training
+        <br /> web app.
       </p>
-      <!-- <p>Take a look and share with me what you think</p>
-      <p class="sign">
-        <span class="avatar">
-          <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid meet"
-            viewBox="0 0 200 200" width="100%" height="100%">
-            <g fillRule="evenodd" clipRule="evenodd">
-              <path fill="#FDDECA" d="M148.6 84.3s6.7-10.6 10.2-5.6c3.4 5-5.4 26.2-6.7 26.3-1.3.1-3.2.6-4-1.8l-2-7 2.5-11.9z" />
-              <path fill="#9C3" d="M0 100c0 55.2 44.8 99 100 99s100-43.8 100-99a100 100 0 0 0-200 0z" />
-              <path opacity=".2" d="M140.9 130.5l-39.3 17-22.8 46.2 31.3 6.5a99.6 99.6 0 0 0 89.6-99.7c0-37.6-20.5-70.4-50.7-87.5a43.5 43.5 0 0 0-19 31.6l10 79.4c0 2.3.3 4.5.9 6.5z"
-              />
-              <path fill="#F9BB00" d="M67.7 67.7a43.6 43.6 0 1 1 87.2 0 43.6 43.6 0 0 1-87.2 0z" />
-              <path fill="#FDDECA" d="M75.1 84.3S68.4 73.8 65 78.8c-3.5 5 5.3 26.2 6.6 26.3 1.3.1 3.3.6 4-1.8l2-7-2.5-11.9zM148.6 84.3s6.7-10.6 10.2-5.6c3.4 5-5.4 26.2-6.7 26.3-1.3.1-3.2.6-4-1.8l-2-7 2.5-11.9z"
-              />
-              <path opacity=".1" d="M148.6 84.3s6.7-10.6 10.2-5.6c3.4 5-5.4 26.2-6.7 26.3-1.3.1-3.2.6-4-1.8l-2-7 2.5-11.9z" />
-              <path fill="#68CAD5" d="M103.2 138.8L30 171.1a99.1 99.1 0 0 0 71 28.5c35 0 65.7-17.4 83.2-45.3l-43.1-15.5h-37.9z" />
-              <path fill="#FDDECA" d="M81.3 134.6c0 13.3 6.6 35.6 29.9 35.6s34.2-15.2 34.2-28.4l7.7-74.1C150.8 46 133 29.2 111.2 29.2S71.8 46 69.5 67.7l11.9 67z"
-              />
-              <path fill="#F9BB00" d="M72.8 88.3l2 10 4.7 5s-.7-1.3-2.8-13.1c-2-11.2-1.7-24.8-1.4-26.5 1.5-9 4.2-17.4 8.5-19.9 10.5-6 14.7-1 26.9-1 10.9 0 17.5-5.3 27.6 1.3 8 5.2 10.5 23.4 10.7 32.5.1 9.2-2.2 24.6-2.2 24.6l4.4-5.8 1.4-10.6.5-18.4c-2.3-21.7-20.2-38.5-41.9-38.5S71.7 44.7 69.4 66.3l3.4 22z"
-              />
-              <path opacity=".1" d="M120.6 153.9l-8.3-6.3s12-2.1 16.6-6.3c4.7-4.2 10.4-7.4 12.5-10.5 1.2-1.9 6.7-38.5 6.7-38.3 0 .1.6-6 .8-11.8.1-4.7-.2-9.2-.2-9.2L151 59l-2.3-14.3s4.2 7.2 5.7 15c1.8 9.3-.6 17.7-.6 17.7l-.5 1.7-2 16.3-1.1 1.3-5.6 53-11.4 4.2h-12.5z"
-              />
-              <path opacity=".1" fill="#333" d="M118.3 95.5c1 1.4 7.5 13.8-4.5 14.9-2.5.2-5-1.8-7.5-5.8v-.3c1.4 1.8 4.3 2.8 6.7 2.8 7.3 0 6.2-7 5.3-11.6z"
-              />
-              <path opacity=".3" fill="#333" d="M105 69.7s.6 4.5 0 4.7c-.5.2-2.7-.2-4.8 0-2 .2-8.3 4.7-8.3 4.7V76s1.2-2.7 6-4.7c4.7-2 7.1-1.6 7.1-1.6zM120.3 69.7s2.4-.4 7.2 1.6c4.8 2 6 4.7 6 4.7v3s-6.4-4.4-8.4-4.6c-2-.2-4.2.2-4.8 0-.5-.2 0-4.7 0-4.7z"
-              />
-              <path opacity=".4" d="M100 116.6h.2s4.6 8 13.3 8c9.2 0 13.1-8 13.1-8l.2.2s-5.5 6.6-13.3 6.7c-7.6.1-13.6-6.9-13.6-6.9z" />
-              <path fill="#06C" d="M98.6 86.5a2 2 0 1 1 4 0 2 2 0 0 1-4 0zM122.8 86.5a2 2 0 1 1 4 0 2 2 0 0 1-4 0z" />
-            </g>
-          </svg>
-        </span>
-        lazy
-        <b>Will</b>
-      </p> -->
       <div class="control">
         <svg class="loading" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
           version="1.0" width="100%" height="100%" viewBox="0 0 128 16" xml:space="preserve">

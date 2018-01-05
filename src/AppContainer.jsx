@@ -87,12 +87,12 @@ class AppContainer extends React.Component {
   }
 
   render() {
-    if (this.props.combosQuery && this.props.combosQuery.loading) {
-      return <div>Loading</div>;
-    }
-    if (this.props.combosQuery && this.props.combosQuery.error) {
-      return <div>Error</div>;
-    }
+    // if (this.props.combosQuery && this.props.combosQuery.loading) {
+    //   return <div>Loading</div>;
+    // }
+    // if (this.props.combosQuery && this.props.combosQuery.error) {
+    //   return <div>Error</div>;
+    // }
 
     return (
       <MuiThemeProvider theme={theme}>
