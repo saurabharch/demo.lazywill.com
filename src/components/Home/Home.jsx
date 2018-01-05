@@ -3,6 +3,7 @@ import injectSheet from "react-jss";
 import Loadable from "react-loadable";
 import Loading from "../shared/Loading/";
 import SvgEl from "../shared/SvgEl";
+import Hammer from "react-hammerjs";
 import { LOGOS } from "../../constants/logos";
 
 const styles = theme => ({
@@ -47,51 +48,58 @@ const styles = theme => ({
 });
 
 const Home = props => {
+  function handleSwipe() {
+    console.log("swipe");
+    props.history.push("/browse");
+  }
+
+  const { classes } = props;
+
   const AsyncBrowser = Loadable({
     loader: () => import("../Browser/"),
     loading: Loading
   });
 
-  const { classes } = props;
-
   AsyncBrowser.preload();
 
   return (
-    <div className={classes.root}>
-      <div className={classes.textBox}>
-        <h1 className={classes.head}>Welcome to </h1>
-        <span className={classes.logo}>
-          <SvgEl svg={LOGOS.MAIN} />
-        </span>
-        <p>
-          I'm Will and I'm working at a new <b>vocabulary training app</b> for
-          language learners like myself, for declared <b>visual learners</b>.
-        </p>
-        <p>
-          Please, take a look at this small <b>demo</b> and share with me what
-          you think.
-        </p>
-        <p>
-          This is only a sneak preview of how the app will look like and how it
-          will work, but it shows the main idea.
-        </p>
-        <p>
-          Feel free to send your comments at{" "}
-          <a href="mailto:hello@lazywill.com">hello@lazywill.com</a>.
-        </p>
-        <p>I appreciate any kind of feedback.</p>
-        <p>
-          <i>Thank you</i>
-        </p>
-        <p>
-          {" "}
-          lazy <b>Will</b>
-          <span className={classes.avatar}>
-            <SvgEl svg={LOGOS.AVATAR} />
+    <Hammer onSwipeLeft={handleSwipe}>
+      <div className={classes.root}>
+        <div className={classes.textBox}>
+          <h1 className={classes.head}>Welcome to </h1>
+          <span className={classes.logo}>
+            <SvgEl svg={LOGOS.MAIN} />
           </span>
-        </p>
+          <p>
+            I'm Will and I'm working at a new <b>vocabulary training app</b> for
+            language learners like myself, for declared <b>visual learners</b>.
+          </p>
+          <p>
+            Please, take a look at this small <b>demo</b> and share with me what
+            you think.
+          </p>
+          <p>
+            This is only a sneak preview of how the app will look like and how
+            it will work, but it shows the main idea.
+          </p>
+          <p>
+            Feel free to send your comments at{" "}
+            <a href="mailto:hello@lazywill.com">hello@lazywill.com</a>.
+          </p>
+          <p>I appreciate any kind of feedback.</p>
+          <p>
+            <i>Thank you</i>
+          </p>
+          <p>
+            {" "}
+            lazy <b>Will</b>
+            <span className={classes.avatar}>
+              <SvgEl svg={LOGOS.AVATAR} />
+            </span>
+          </p>
+        </div>
       </div>
-    </div>
+    </Hammer>
   );
 };
 

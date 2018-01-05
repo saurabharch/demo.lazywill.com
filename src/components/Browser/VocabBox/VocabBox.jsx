@@ -1,4 +1,5 @@
 import React from "react";
+import Hammer from "react-hammerjs";
 import injectSheet from "react-jss";
 import PictureBox from "../PictureBox/";
 import TextsBox from "../TextsBox/";
@@ -15,13 +16,19 @@ const styles = theme => ({
 });
 
 const VocabBox = props => {
-  const { classes, combo } = props;
+  const { classes, combo, onSwipe } = props;
+
+  function handleSwipe() {
+    onSwipe();
+  }
 
   return (
-    <div className={classes.root}>
-      <PictureBox combo={combo} />
-      <TextsBox combo={combo} />
-    </div>
+    <Hammer onSwipeLeft={handleSwipe}>
+      <div className={classes.root}>
+        <PictureBox combo={combo} />
+        <TextsBox combo={combo} />
+      </div>
+    </Hammer>
   );
 };
 

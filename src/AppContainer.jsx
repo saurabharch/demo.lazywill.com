@@ -11,8 +11,6 @@ import gql from "graphql-tag";
 import theme from "./styles/theme";
 import globals from "./styles/global";
 
-import Home from "./components/Home/";
-
 const AsyncHome = Loadable({
   loader: () => import("./components/Home/"),
   loading: Loading
@@ -97,11 +95,20 @@ class AppContainer extends React.Component {
     return (
       <MuiThemeProvider theme={theme}>
         <Switch>
-          <Route exact path="/" component={AsyncHome} />
+          <Route
+            exact
+            path="/"
+            render={({ history }) => <AsyncHome history={history} />}
+          />
           <Route
             exact
             path="/browse"
-            render={() => <AsyncBrowser combo={this.state.activeCombo} />}
+            render={() => (
+              <AsyncBrowser
+                combo={this.state.activeCombo}
+                onSwipe={this.changeActiveCombo}
+              />
+            )}
           />
           <Route path="/subs" component={AsyncSubscribe} />
         </Switch>
