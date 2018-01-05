@@ -15,7 +15,7 @@ const styles = theme => ({
       top: 0,
       bottom: "60px",
       left: props => props.windowHeight,
-      top: 0
+      overflow: "hidden"
     }
   },
   entry: {

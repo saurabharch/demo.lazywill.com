@@ -53,8 +53,8 @@ class AppContainer extends React.Component {
 
   windowResizeHandler(e) {
     this.setState(() => ({
-      windowWidth: window.innerWidth,
-      windowHeight: window.innerHeight
+      windowWidth: document.documentElement.clientWidth, // || window.innerWidth,
+      windowHeight: document.documentElement.clientHeight //|| window.innerHeight
     }));
   }
 
@@ -139,6 +139,9 @@ class AppContainer extends React.Component {
           windowWidth={windowWidth}
           windowHeight={windowHeight}
         />
+        {/* <h1 style={{ color: "white", position: "absolute", top: 0, left: 0 }}>
+          !!! {windowWidth}-{windowHeight}
+        </h1> */}
       </MuiThemeProvider>
     );
   }

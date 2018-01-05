@@ -11,7 +11,8 @@ const styles = theme => ({
     bottom: 0,
     left: 0,
     right: 0,
-    overflow: "auto",
+    overflowY: "auto",
+    overflowX: "hidden",
     "&.portrait": {
       bottom: "60px"
     }
@@ -24,6 +25,7 @@ class VocabBox extends React.Component {
 
     this.handleSwipe = this.handleSwipe.bind(this);
   }
+
   getOrientationClass(width, height) {
     return width >= height ? "landscape" : "portrait";
   }

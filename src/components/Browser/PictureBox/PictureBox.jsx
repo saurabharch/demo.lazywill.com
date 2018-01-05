@@ -13,13 +13,14 @@ const styles = theme => ({
     ".portrait &": {
       position: "relative",
       width: "100%"
+      //height: props => props.windowWidth
     },
     ".landscape &": {
       position: "absolute",
-      height: "100%",
       left: 0,
       top: 0,
-      width: props => props.windowHeight
+      width: props => props.windowHeight,
+      bottom: 0
     }
     // "@media screen and (orientation: landscape)": {
     //   height: "100%",
@@ -140,6 +141,7 @@ class PictureBox extends React.Component {
   }
 
   render() {
+    console.log(this.props);
     const combo = this.props.combo;
     const classes = this.props.classes;
     const pictureMode = this.state.pictureMode;
