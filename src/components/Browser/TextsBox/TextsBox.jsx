@@ -6,7 +6,17 @@ const styles = theme => ({
     color: "#fff",
     fontSize: "1em",
     padding: "1em 1.5em 2em",
-    width: "100%"
+    ".portrait &": {
+      position: "relative",
+      width: "100%"
+    },
+    ".landscape &": {
+      position: "absolute",
+      top: 0,
+      bottom: "60px",
+      left: props => props.windowHeight,
+      top: 0
+    }
   },
   entry: {
     "& h1": {

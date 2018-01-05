@@ -10,11 +10,31 @@ import pictureLoading from "../../../images/pictureloading.gif";
 
 const styles = theme => ({
   root: {
-    position: "relative",
-    width: "100%"
+    ".portrait &": {
+      position: "relative",
+      width: "100%"
+    },
+    ".landscape &": {
+      position: "absolute",
+      height: "100%",
+      left: 0,
+      top: 0,
+      width: props => props.windowHeight
+    }
+    // "@media screen and (orientation: landscape)": {
+    //   height: "100%",
+    //   position: "absolute",
+    //   left: 0,
+    //   top: 0
+    // },
+    // "@media screen and (orientation: portrait)": {
+    //   width: "100%",
+    //   position: "realative"
+    // }
   },
   picture: {
-    width: "100%"
+    maxWidth: "100%",
+    maxHeight: "100%"
   },
   logo: {
     width: "50px",
@@ -80,8 +100,7 @@ class PictureBox extends React.Component {
   }
 
   getPictureSize() {
-    const windowWidth = window.innerWidth;
-    const windowHeigh = window.innerHeight;
+    const { windowWidth, windowHeigh } = this.props;
     const minDimension = windowWidth > windowHeigh ? windowHeigh : windowWidth;
 
     if (minDimension <= 400) {

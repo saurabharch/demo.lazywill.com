@@ -15,13 +15,18 @@ const styles = theme => ({
 });
 
 const Browser = props => {
-  const { classes, combo, onSwipe } = props;
+  const { classes, combo, onSwipe, windowWidth, windowHeight } = props;
 
   return (
     <div className={classes.root}>
       {combo && (
         <React.Fragment>
-          <VocabBox combo={combo} onSwipe={onSwipe} />
+          <VocabBox
+            combo={combo}
+            onSwipe={onSwipe}
+            windowWidth={windowWidth}
+            windowHeight={windowHeight}
+          />
         </React.Fragment>
       )}
     </div>

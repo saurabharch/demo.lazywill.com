@@ -34,10 +34,28 @@ class AppContainer extends React.Component {
     this.state = {
       unseenCombos: null,
       seenCombos: null,
-      activeCombo: null
+      activeCombo: null,
+      windowWidth: window.innerWidth,
+      windowHeight: window.innerHeight
     };
 
+    this.windowResizeHandler = this.windowResizeHandler.bind(this);
     this.changeActiveCombo = this.changeActiveCombo.bind(this);
+  }
+
+  componentDidMount() {
+    window.addEventListener("resize", this.windowResizeHandler, false);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.windowResizeHandler, false);
+  }
+
+  windowResizeHandler(e) {
+    this.setState(() => ({
+      windowWidth: window.innerWidth,
+      windowHeight: window.innerHeight
+    }));
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -85,6 +103,8 @@ class AppContainer extends React.Component {
   }
 
   render() {
+    const { windowWidth, windowHeight } = this.state;
+
     // if (this.props.combosQuery && this.props.combosQuery.loading) {
     //   return <div>Loading</div>;
     // }
@@ -107,12 +127,18 @@ class AppContainer extends React.Component {
               <AsyncBrowser
                 combo={this.state.activeCombo}
                 onSwipe={this.changeActiveCombo}
+                windowWidth={windowWidth}
+                windowHeight={windowHeight}
               />
             )}
           />
           <Route path="/subs" component={AsyncSubscribe} />
         </Switch>
-        <AsyncNav onNextClick={this.changeActiveCombo} />
+        <AsyncNav
+          onNextClick={this.changeActiveCombo}
+          windowWidth={windowWidth}
+          windowHeight={windowHeight}
+        />
       </MuiThemeProvider>
     );
   }

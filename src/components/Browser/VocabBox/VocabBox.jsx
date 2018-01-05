@@ -8,28 +8,55 @@ const styles = theme => ({
   root: {
     position: "absolute",
     top: 0,
-    bottom: "60px",
+    bottom: 0,
     left: 0,
     right: 0,
-    overflow: "auto"
+    overflow: "auto",
+    "&.portrait": {
+      bottom: "60px"
+    }
   }
 });
 
-const VocabBox = props => {
-  const { classes, combo, onSwipe } = props;
+class VocabBox extends React.Component {
+  constructor(props) {
+    super(props);
 
-  function handleSwipe() {
-    onSwipe();
+    this.handleSwipe = this.handleSwipe.bind(this);
+  }
+  getOrientationClass(width, height) {
+    return width >= height ? "landscape" : "portrait";
   }
 
-  return (
-    <Hammer onSwipeLeft={handleSwipe}>
-      <div className={classes.root}>
-        <PictureBox combo={combo} />
-        <TextsBox combo={combo} />
-      </div>
-    </Hammer>
-  );
-};
+  handleSwipe() {
+    this.props.onSwipe();
+  }
+
+  render() {
+    const { classes, combo, windowWidth, windowHeight } = this.props;
+
+    return (
+      <Hammer onSwipeLeft={this.handleSwipe}>
+        <div
+          className={`${classes.root} ${this.getOrientationClass(
+            windowWidth,
+            windowHeight
+          )}`}
+        >
+          <PictureBox
+            combo={combo}
+            windowWidth={windowWidth}
+            windowHeight={windowHeight}
+          />
+          <TextsBox
+            combo={combo}
+            windowWidth={windowWidth}
+            windowHeight={windowHeight}
+          />
+        </div>
+      </Hammer>
+    );
+  }
+}
 
 export default injectSheet(styles)(VocabBox);
