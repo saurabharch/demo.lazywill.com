@@ -12,8 +12,8 @@ const styles = theme => ({
   root: {
     ".portrait &": {
       position: "relative",
-      width: "100%"
-      //height: props => props.windowWidth
+      width: "100%",
+      height: props => props.windowWidth
     },
     ".landscape &": {
       position: "absolute",
@@ -63,43 +63,45 @@ class PictureBox extends React.Component {
   }
 
   componentDidMount() {
-    this.setState(() => ({
-      pictureSrc: this.getPictureSrc(this.props.combo),
-      nextPictureSrc: this.getPictureSrc(this.props.nextCombo)
+    this.setState((prevState, props) => ({
+      pictureSrc: this.getPictureSrc(null)
     }));
-  }
 
-  componentWillReceiveProps(nextProps) {
-    if (this.props.combo !== nextProps.combo) {
-      if (this.props.combo.picture.id !== nextProps.combo.picture.id) {
-        this.setState(
-          () => ({
-            pictureSrc: this.getPictureSrc(nextProps.combo)
-          })
-          //this.updatePictureSrc
-        );
-      }
-    }
+    this.nextPicture = new Image();
+    this.nextPicture.src = this.getPictureSrc(this.props.nextCombo);
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (this.props.combo !== prevProps.combo) {
-      if (this.props.combo.picture.id !== this.props.nextCombo.picture.id) {
-        this.setState(() => ({
-          nextPictureSrc: this.getPictureSrc(this.props.nextCombo)
+      if (this.props.combo.picture.id !== prevProps.combo.picture.id) {
+        // checks if the picture file preloading is completed
+        const nextPictureLoaded = this.nextPicture.complete;
+
+        // depending on the status of image preloading (see bellow)
+        // sets 'loading picture' as combo picture to indicate that
+        // the comobo picture is loading
+        this.setState((prevState, props) => ({
+          pictureSrc: this.getPictureSrc(nextPictureLoaded ? props.combo : null)
         }));
+
+        // preloads image file for the next combo
+        if (this.props.combo.picture.id !== this.props.nextCombo.picture.id) {
+          this.nextPicture = new Image();
+          this.nextPicture.src = this.getPictureSrc(this.props.nextCombo);
+        }
       }
     }
-  }
 
-  updatePictureSrc() {
-    setTimeout(() => {
-      this.setState(() => {
-        return {
+    // if 'loading picture' was set as a combo picture (see above)
+    // now it's time to set back to the proper image src
+    // timeout delay force React to render 'loading picture'
+    if (this.state.pictureSrc.substr(0, 5) === "data:") {
+      setTimeout(() => {
+        this.setState(() => ({
           pictureSrc: this.getPictureSrc(this.props.combo)
-        };
-      });
-    }, 50);
+        }));
+      }, 50);
+    }
   }
 
   getPictureSrc(combo, size) {
@@ -119,19 +121,6 @@ class PictureBox extends React.Component {
         windowWidth,
         windowHeigh
       )}.jpeg`;
-    }
-  }
-
-  getSpot(spot) {
-    if (this.state.pictureLoading) {
-      return {
-        x: 40,
-        y: 40,
-        width: 20,
-        height: 20
-      };
-    } else {
-      return spot;
     }
   }
 
@@ -167,7 +156,7 @@ class PictureBox extends React.Component {
   }
 
   render() {
-    const { classes, combo, nextCombo } = this.props;
+    const { classes, combo } = this.props;
     const pictureMode = this.state.pictureMode;
 
     return (
@@ -195,11 +184,6 @@ class PictureBox extends React.Component {
               picture={combo.picture}
               detailsOpened={this.state.detailsOpened}
               onClick={this.toggleCreditsDetails}
-            />
-            <img
-              className={classes.nextPicture}
-              src={this.state.nextPictureSrc}
-              alt=""
             />
           </React.Fragment>
         )}
