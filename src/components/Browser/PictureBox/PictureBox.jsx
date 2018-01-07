@@ -22,20 +22,19 @@ const styles = theme => ({
       width: props => props.windowHeight,
       bottom: 0
     }
-    // "@media screen and (orientation: landscape)": {
-    //   height: "100%",
-    //   position: "absolute",
-    //   left: 0,
-    //   top: 0
-    // },
-    // "@media screen and (orientation: portrait)": {
-    //   width: "100%",
-    //   position: "realative"
-    // }
   },
   picture: {
     maxWidth: "100%",
-    maxHeight: "100%"
+    maxHeight: "100%",
+    ".portrait &": {
+      width: "100%"
+    },
+    ".landscape &": {
+      height: "100%"
+    }
+  },
+  nextPicture: {
+    display: "none"
   },
   logo: {
     width: "50px",
@@ -55,7 +54,8 @@ class PictureBox extends React.Component {
     this.state = {
       detailsOpened: false,
       pictureMode: false,
-      pictureSrc: null
+      pictureSrc: null,
+      nextPictureSrc: ""
     };
 
     this.toggleCreditsDetails = this.toggleCreditsDetails.bind(this);
@@ -64,19 +64,30 @@ class PictureBox extends React.Component {
 
   componentDidMount() {
     this.setState(() => ({
-      pictureSrc: this.getPictureSrc(this.props.combo)
+      pictureSrc: this.getPictureSrc(this.props.combo),
+      nextPictureSrc: this.getPictureSrc(this.props.nextCombo)
     }));
   }
 
   componentWillReceiveProps(nextProps) {
     if (this.props.combo !== nextProps.combo) {
-      if (this.props.combo.picture !== nextProps.combo.picture) {
+      if (this.props.combo.picture.id !== nextProps.combo.picture.id) {
         this.setState(
           () => ({
-            pictureSrc: this.getPictureSrc(null)
-          }),
-          this.updatePictureSrc
+            pictureSrc: this.getPictureSrc(nextProps.combo)
+          })
+          //this.updatePictureSrc
         );
+      }
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.props.combo !== prevProps.combo) {
+      if (this.props.combo.picture.id !== this.props.nextCombo.picture.id) {
+        this.setState(() => ({
+          nextPictureSrc: this.getPictureSrc(this.props.nextCombo)
+        }));
       }
     }
   }
@@ -88,30 +99,26 @@ class PictureBox extends React.Component {
           pictureSrc: this.getPictureSrc(this.props.combo)
         };
       });
-    }, 5);
+    }, 50);
   }
 
-  getPictureSrc(combo) {
+  getPictureSrc(combo, size) {
+    const { windowWidth, windowHeigh } = this.props;
+
     if (!combo) {
       return pictureLoading;
     }
-    return `https://d3nstmfkiycslv.cloudfront.net/${combo.picture.arangoKey}_${
-      combo.picture.hash
-    }_${this.getPictureSize()}.jpeg`;
-  }
-
-  getPictureSize() {
-    const { windowWidth, windowHeigh } = this.props;
-    const minDimension = windowWidth > windowHeigh ? windowHeigh : windowWidth;
-
-    if (minDimension <= 400) {
-      return "400";
-    } else if (minDimension <= 600) {
-      return "600";
-    } else if (minDimension <= 800) {
-      return "800";
+    if (size) {
+      return `https://d3nstmfkiycslv.cloudfront.net/${
+        combo.picture.arangoKey
+      }_${combo.picture.hash}_${size}.jpeg`;
     } else {
-      return "1000";
+      return `https://d3nstmfkiycslv.cloudfront.net/${
+        combo.picture.arangoKey
+      }_${combo.picture.hash}_${this.getPictureSize(
+        windowWidth,
+        windowHeigh
+      )}.jpeg`;
     }
   }
 
@@ -128,6 +135,25 @@ class PictureBox extends React.Component {
     }
   }
 
+  getPictureSize = (width, heigh) => {
+    const minDimension = width > heigh ? heigh : width;
+
+    if (minDimension <= 400) {
+      return "400";
+    } else if (minDimension <= 600) {
+      return "600";
+    } else if (minDimension <= 800) {
+      return "800";
+    } else {
+      return "1000";
+    }
+  };
+
+  preloadNextActiveComboImage(combo) {
+    const img = new Image();
+    img.src = this.getPictureSrc(combo);
+  }
+
   toggleCreditsDetails() {
     this.setState(prevState => ({
       detailsOpened: !prevState.detailsOpened
@@ -141,9 +167,7 @@ class PictureBox extends React.Component {
   }
 
   render() {
-    console.log(this.props);
-    const combo = this.props.combo;
-    const classes = this.props.classes;
+    const { classes, combo, nextCombo } = this.props;
     const pictureMode = this.state.pictureMode;
 
     return (
@@ -171,6 +195,11 @@ class PictureBox extends React.Component {
               picture={combo.picture}
               detailsOpened={this.state.detailsOpened}
               onClick={this.toggleCreditsDetails}
+            />
+            <img
+              className={classes.nextPicture}
+              src={this.state.nextPictureSrc}
+              alt=""
             />
           </React.Fragment>
         )}

@@ -35,7 +35,7 @@ class VocabBox extends React.Component {
   }
 
   render() {
-    const { classes, combo, windowWidth, windowHeight } = this.props;
+    const { classes, combo, nextCombo, windowWidth, windowHeight } = this.props;
 
     return (
       <Hammer onSwipeLeft={this.handleSwipe}>
@@ -47,6 +47,7 @@ class VocabBox extends React.Component {
         >
           <PictureBox
             combo={combo}
+            nextCombo={nextCombo}
             windowWidth={windowWidth}
             windowHeight={windowHeight}
           />

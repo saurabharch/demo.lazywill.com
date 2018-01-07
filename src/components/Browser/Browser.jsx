@@ -15,7 +15,14 @@ const styles = theme => ({
 });
 
 const Browser = props => {
-  const { classes, combo, onSwipe, windowWidth, windowHeight } = props;
+  const {
+    classes,
+    combo,
+    nextCombo,
+    onSwipe,
+    windowWidth,
+    windowHeight
+  } = props;
 
   return (
     <div className={classes.root}>
@@ -23,6 +30,7 @@ const Browser = props => {
         <React.Fragment>
           <VocabBox
             combo={combo}
+            nextCombo={nextCombo}
             onSwipe={onSwipe}
             windowWidth={windowWidth}
             windowHeight={windowHeight}
