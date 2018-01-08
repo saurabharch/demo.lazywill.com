@@ -13,13 +13,13 @@ const styles = theme => ({
     position: "absolute",
     left: "100%",
     marginLeft: "-60px",
-    transition: "all .5s",
+    transition: "all .8s",
     "&:hover": {
       background: Color(theme.palette.background.blue)
         .darken(0.1)
         .string()
     },
-    ".browse-screen &": {
+    ".browse-screen &, .subs-screen &": {
       left: 0,
       marginLeft: 0
     }
@@ -44,8 +44,7 @@ const HomeLink = props => {
       classes={{ root: classes.root }}
       onClick={onClick}
     >
-      {currentRoute === "home" && <ArrowForward />}
-      {currentRoute === "browse" && <InfoOutline />}
+      {currentRoute === "home" ? <ArrowForward /> : <InfoOutline />}
     </SquareButton>
   );
 };

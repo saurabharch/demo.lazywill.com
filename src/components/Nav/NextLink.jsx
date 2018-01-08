@@ -1,11 +1,21 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { withStyles } from "material-ui/styles";
-import { CircularProgress } from "material-ui/Progress";
+import injectSheet from "react-jss";
 import Color from "color";
 
 import BlockButton from "../shared/BlockButton";
+import ArrowBack from "material-ui-icons/ArrowBack";
 import ArrowForward from "material-ui-icons/ArrowForward";
+
+const superstyles = theme => ({
+  root: {
+    ".subs-screen &": {
+      left: "61px",
+      right: props => `${props.windowWidth - 120}px`
+    }
+  }
+});
 
 const styles = theme => ({
   root: {
@@ -14,14 +24,17 @@ const styles = theme => ({
     position: "absolute",
     right: 0,
     width: "auto",
-    transition: "all .5s",
+    transition: "all .8s",
     "&:hover": {
       background: Color(theme.palette.background.green)
         .darken(0.2)
         .string()
     },
     ".browse-screen &": {
-      left: "60px"
+      left: "61px"
+    },
+    ".browse-screen.subs-button &": {
+      right: "61px"
     }
   },
   progress: {
@@ -29,35 +42,44 @@ const styles = theme => ({
     margin: "-15px 0 0 5px"
   },
   label: {
-    marginTop: "-3px",
-    "& svg": {
-      margin: "6px 0 0 5px"
+    ".browse-screen &": {
+      marginTop: "-3px",
+      "& svg": {
+        margin: "6px 0 0 5px"
+      }
     }
   }
 });
 
 const NextLink = props => {
-  const { classes, onClick, comboIsLoading } = props;
+  const { classes, onClick, currentRoute } = props;
+
+  function getTarget(currentRoute) {
+    if (currentRoute === "subs") {
+      return "/browse";
+    } else {
+      return "#";
+    }
+  }
 
   return (
     <BlockButton
-      to="#"
+      to={getTarget(currentRoute)}
       component={Link}
       classes={{ root: classes.root, label: classes.label }}
       onClick={onClick}
     >
-      {!comboIsLoading ? "next" : "loading"}
-      {comboIsLoading ? (
-        <CircularProgress
-          className={classes.progress}
-          thickness={6}
-          size={24}
-        />
-      ) : (
-        <ArrowForward />
-      )}
+      <span
+        style={{
+          display: currentRoute === "browse" ? "inline" : "none",
+          transitionDelay: "2s"
+        }}
+      >
+        next
+      </span>
+      {currentRoute === "browse" ? <ArrowForward /> : <ArrowBack />}
     </BlockButton>
   );
 };
 
-export default withStyles(styles)(NextLink);
+export default injectSheet(superstyles)(withStyles(styles)(NextLink));

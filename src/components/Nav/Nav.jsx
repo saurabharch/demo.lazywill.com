@@ -4,6 +4,7 @@ import { withRouter } from "react-router";
 
 import HomeLink from "./HomeLink";
 import NextLink from "./NextLink";
+import SubscribeLink from "./SubscribeLink";
 
 const styles = theme => ({
   root: {
@@ -14,7 +15,7 @@ const styles = theme => ({
     position: "absolute",
     right: 0,
     overflow: "hidden",
-    "&.landscape": {
+    "&.landscape.browse-screen": {
       left: props => props.windowHeight
     }
   }
@@ -30,20 +31,34 @@ const ContextNav = props => {
     return width >= height ? "landscape" : "portrait";
   }
 
-  const { classes, location, onNextClick, windowWidth, windowHeight } = props;
+  const {
+    classes,
+    location,
+    onNextClick,
+    windowWidth,
+    windowHeight,
+    seenCombos
+  } = props;
+
   const { pathname } = location;
   const currentRoute = getCurrentRoute(pathname);
 
   return (
     <nav
       className={`
-        ${classes.root} 
+        ${classes.root}         
+        ${seenCombos > 5 ? "subs-button" : ""}
         ${currentRoute}-screen 
         ${getOrientationClass(windowWidth, windowHeight)}
       `}
     >
-      <NextLink currentRoute={currentRoute} onClick={onNextClick} />
+      <NextLink
+        currentRoute={currentRoute}
+        onClick={onNextClick}
+        windowWidth={windowWidth}
+      />
       <HomeLink currentRoute={currentRoute} />
+      <SubscribeLink currentRoute={currentRoute} />
     </nav>
   );
 };

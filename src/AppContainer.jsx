@@ -1,7 +1,8 @@
 import React from "react";
 import { MuiThemeProvider } from "material-ui/styles";
+import Reboot from "material-ui/Reboot";
 import injectSheet from "react-jss";
-import normalize from "normalize-jss";
+//import normalize from "normalize-jss";
 import { Switch, Route } from "react-router-dom";
 import Loadable from "react-loadable";
 import Loading from "./components/shared/Loading/";
@@ -124,7 +125,7 @@ class AppContainer extends React.Component {
   }
 
   render() {
-    const { windowWidth, windowHeight } = this.state;
+    const { windowWidth, windowHeight, unseenCombos, seenCombos } = this.state;
 
     // if (this.props.combosQuery && this.props.combosQuery.loading) {
     //   return <div>Loading</div>;
@@ -135,6 +136,7 @@ class AppContainer extends React.Component {
 
     return (
       <MuiThemeProvider theme={theme}>
+        <Reboot />
         <Switch>
           <Route
             exact
@@ -160,10 +162,9 @@ class AppContainer extends React.Component {
           onNextClick={this.changeActiveCombo}
           windowWidth={windowWidth}
           windowHeight={windowHeight}
+          unseenCombos={unseenCombos.length}
+          seenCombos={seenCombos.length}
         />
-        {/* <h1 style={{ color: "white", position: "absolute", top: 0, left: 0 }}>
-          !!! {windowWidth}-{windowHeight}
-        </h1> */}
       </MuiThemeProvider>
     );
   }
@@ -210,5 +211,5 @@ const COMBOS_QUERY = gql`
 `;
 
 export default graphql(COMBOS_QUERY, { name: "combosQuery" })(
-  injectSheet(normalize)(injectSheet(globals)(AppContainer))
+  injectSheet(globals)(AppContainer)
 );
