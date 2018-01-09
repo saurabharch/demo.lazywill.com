@@ -107,7 +107,6 @@ class Subscribe extends React.Component {
     }
 
     var headers = new Headers();
-    headers.append("X-Requested-With", "XMLHttpRequest");
 
     var request = {
       method: "POST",
