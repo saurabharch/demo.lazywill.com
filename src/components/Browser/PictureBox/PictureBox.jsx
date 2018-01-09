@@ -20,7 +20,8 @@ const styles = theme => ({
       left: 0,
       top: 0,
       width: props => props.windowHeight,
-      bottom: 0
+      bottom: 0,
+      overflow: "hidden"
     }
   },
   picture: {
