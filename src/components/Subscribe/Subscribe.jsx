@@ -124,7 +124,7 @@ class Subscribe extends React.Component {
       body: formData
     };
 
-    fetch("https://subscription.lazywill.com/mailster/subsscribe", request)
+    fetch("https://subscription.lazywill.com/mailster/subscribe", request)
       .then(resp => resp.json())
       .then(data => {
         this.setState({
