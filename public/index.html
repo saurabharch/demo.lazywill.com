@@ -44,11 +44,19 @@
     #splash .inner {
       max-width: 500px;
       margin: 0 auto;
+      float: none;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      height: 100%;
-      padding: 3em 0;
+      height: 50%;
+    }
+
+    #splash .inner:first-child {
+      padding: 10% 0 0;
+    }
+
+    #splash .inner:last-child {
+      padding: 0 0 10%;
     }
 
     #splash h1 {
@@ -89,7 +97,7 @@
 
     #splash .control {
       height: 130px;
-      margin: 2em -3em 0;
+      margin: 0;
       position: relative;
       overflow: hidden;
       flex-shrink: 0;
@@ -158,7 +166,26 @@
       }
     }
 
-    @media (min-width: 1024px) {}
+    @media (orientation: landscape) and (max-width: 1023px) {
+      #splash .inner {
+
+        width: 50%;
+        float: left;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 100%;
+        padding: 0;
+      }
+
+      #splash .inner:first-child,
+      #splash .inner:last-child {
+        padding: 2em 0;
+      }
+
+    }
+
 
     noscript {
       background: #d00;
@@ -197,6 +224,8 @@
         <br />vocabulary training
         <br /> web app.
       </p>
+    </div>
+    <div class="inner">
       <div class="control">
         <svg class="loading" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
           version="1.0" width="100%" height="100%" viewBox="0 0 128 16" xml:space="preserve">
