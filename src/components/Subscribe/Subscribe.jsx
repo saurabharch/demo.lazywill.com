@@ -97,14 +97,13 @@ class Subscribe extends React.Component {
 
     fetch("https://subscription.lazywill.com/mailster/subscribe", {
       method: "POST",
-      body: {
+      body: JSON.stringify({
         formid: 1,
         email: this.state.email,
-        _nonce: "d1b3e2f10d",
-        _referer: "https://loving-dijkstra-392737.netlify.com/"
-      },
-      header: {
-        "Content-Type": "application/x-www-form-urlencoded",
+        _nonce: "d1b3e2f10d"
+      }),
+      headers: {
+        "Content-Type": "application/json, application/x-www-form-urlencoded",
         Accept: "application/json",
         "Accept-Encoding": "gzip, deflate",
         "X-Requested-With": "XMLHttpRequest"
@@ -130,7 +129,7 @@ class Subscribe extends React.Component {
               <span className={classes.logo}>
                 <SvgEl svg={LOGOS.MAIN} />
               </span>
-              Newsletter2
+              Newsletter3
             </h1>
             <p>Do you like what you've seen?</p>
             <p>
