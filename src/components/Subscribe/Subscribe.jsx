@@ -95,7 +95,7 @@ class Subscribe extends React.Component {
     console.log("form submited");
     event.preventDefault();
 
-    fetch("http://subscription.lazywill.com/mailster/subscribe", {
+    fetch("https://subscription.lazywill.com/mailster/subscribe", {
       method: "POST",
       body: {
         formid: 1,
@@ -130,7 +130,7 @@ class Subscribe extends React.Component {
               <span className={classes.logo}>
                 <SvgEl svg={LOGOS.MAIN} />
               </span>
-              Newsletter@
+              Newsletter2
             </h1>
             <p>Do you like what you've seen?</p>
             <p>
