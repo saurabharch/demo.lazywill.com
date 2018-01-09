@@ -38,11 +38,13 @@ class AppContainer extends React.Component {
       activeCombo: null,
       nextActiveCombo: null,
       windowWidth: document.documentElement.clientWidth,
-      windowHeight: document.documentElement.clientHeight
+      windowHeight: document.documentElement.clientHeight,
+      subscription: false
     };
 
     this.windowResizeHandler = this.windowResizeHandler.bind(this);
     this.changeActiveCombo = this.changeActiveCombo.bind(this);
+    this.updateSubscription = this.updateSubscription.bind(this);
   }
 
   componentDidMount() {
@@ -124,6 +126,12 @@ class AppContainer extends React.Component {
     };
   }
 
+  updateSubscription() {
+    this.setState({
+      subscription: true
+    });
+  }
+
   render() {
     const { windowWidth, windowHeight, unseenCombos, seenCombos } = this.state;
 
@@ -156,7 +164,16 @@ class AppContainer extends React.Component {
               />
             )}
           />
-          <Route path="/subs" component={AsyncSubscribe} />
+          <Route
+            exact
+            path="/subs"
+            render={() => (
+              <AsyncSubscribe
+                subscription={this.state.subscription}
+                update={this.updateSubscription}
+              />
+            )}
+          />
         </Switch>
         <AsyncNav
           onNextClick={this.changeActiveCombo}

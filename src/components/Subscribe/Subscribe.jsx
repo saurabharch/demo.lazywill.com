@@ -7,6 +7,7 @@ import Color from "color";
 import { LOGOS } from "../../constants/logos";
 import SvgEl from "../shared/SvgEl";
 import BlockButton from "../shared/BlockButton";
+import Loading from "../shared/Loading/";
 
 const styles = theme => ({
   root: {
@@ -24,11 +25,23 @@ const styles = theme => ({
     verticalAlign: "middle",
     margin: "6px 5px 0 0"
   },
-  textBox: {
+  invitation: {
     padding: "3em",
     maxWidth: "30em",
     marginLeft: "auto",
     marginRight: "auto",
+    position: "relative",
+    minHeight: "100%",
+    "& h1": {
+      fontWeight: 300,
+      margin: 0,
+      lineHeight: 1.1
+    },
+    "& h2": {
+      fontWeight: 300,
+      fontSize: "1.2em",
+      margin: 0
+    },
     "& p": {
       lineHeight: "1.4em",
       fontSize: "1.1em"
@@ -42,13 +55,8 @@ const styles = theme => ({
       fontWeight: 600
     }
   },
-  head: {
-    fontWeight: 300,
-    margin: 0
-  },
-  subHead: {
-    fontSize: "1.2em",
-    margin: 0
+  instruction: {
+    extend: "invitation"
   },
   avatar: {
     display: "inline-block",
@@ -81,7 +89,8 @@ class Subscribe extends React.Component {
     super(props);
 
     this.state = {
-      email: ""
+      email: "",
+      fetching: false
     };
   }
 
@@ -92,8 +101,11 @@ class Subscribe extends React.Component {
   };
 
   handleSubmit = event => {
-    console.log("form submited");
     event.preventDefault();
+
+    this.setState({
+      fetching: true
+    });
 
     var params = {
       email: this.state.email,
@@ -106,36 +118,21 @@ class Subscribe extends React.Component {
       formData.append(k, params[k]);
     }
 
-    var headers = new Headers();
-
     var request = {
-      method: "POST",
-      headers: headers,
+      method: "post",
       body: formData
     };
 
-    fetch("https://subscription.lazywill.com/mailster/subscribe", request).then(
-      function(response) {
-        console.log(response);
-      }
-    );
-
-    // fetch("https://subscription.lazywill.com/mailster/subscribe", {
-    //   method: "POST",
-    //   body: JSON.stringify({
-    //     formid: 1,
-    //     email: "gregloby+0000@gmail.com",
-    //     _nonce: "d1b3e2f10d"
-    //   }),
-    //   headers: {
-    //     "Content-Type": "application/x-www-form-urlencoded",
-    //     Accept: "application/json",
-    //     "Accept-Encoding": "gzip, deflate",
-    //     "X-Requested-With": "XMLHttpRequest"
-    //   }
-    // }).then(function(response) {
-    //   console.log(response);
-    // });
+    fetch("https://subscription.lazywill.com/mailster/subscribe", request)
+      .then(resp => resp.json())
+      .then(data => {
+        if (data.success) {
+          this.setState({
+            fetching: false
+          });
+          this.props.update();
+        }
+      });
   };
 
   handleSwipe() {
@@ -143,60 +140,89 @@ class Subscribe extends React.Component {
   }
 
   render() {
-    const { classes } = this.props;
+    const { classes, subscription } = this.props;
+    const { fetching } = this.state;
 
     return (
       <Hammer onSwipeRight={this.handleSwipe}>
         <div className={classes.root}>
-          <div className={classes.textBox}>
-            <h2 className={classes.subHead}>Subscribe to</h2>
-            <h1 className={classes.head}>
-              <span className={classes.logo}>
-                <SvgEl svg={LOGOS.MAIN} />
-              </span>
-              Newsletter5
-            </h1>
-            <p>Do you like what you've seen?</p>
-            <p>
-              Unfortunately, that's all what I can show you for now. The app is
-              still in development.{" "}
-            </p>
-            <p>
-              Subscribe to the Newsletter and I will inform your about the
-              progress of work.
-            </p>
-            <p>
-              Do not miss your chance to try out the app as one of the firsts.
-            </p>
-            <form onSubmit={this.handleSubmit}>
-              <TextField
-                onChange={this.handleChange("email")}
-                label="e-mail address"
-                value={this.state.email}
-                type="email"
-                required={true}
-                fullWidth
-                InputProps={{
-                  classes: {
-                    inkbar: classes.inputInkbar
-                  }
-                }}
-                InputLabelProps={{
-                  classes: {
-                    shrink: classes.labelShrink
-                  }
-                }}
-              />
-              <BlockButton
-                type="submit"
-                classes={{
-                  root: classes.submitButton
-                }}
-              >
-                Subscribe
-              </BlockButton>
-            </form>
-          </div>
+          {!subscription &&
+            !fetching && (
+              <div className={classes.invitation}>
+                <h2>Subscribe to</h2>
+                <h1>
+                  <span className={classes.logo}>
+                    <SvgEl svg={LOGOS.MAIN} />
+                  </span>
+                  Newsletter
+                </h1>
+                <p>Do you like what you've seen?</p>
+                <p>
+                  Unfortunately, that's all what I can show you for now. The app
+                  is still in development.{" "}
+                </p>
+                <p>
+                  Subscribe to the Newsletter and I will inform your about the
+                  progress of work.
+                </p>
+                <p>
+                  Do not miss your chance to try out the app as one of the
+                  firsts.
+                </p>
+                <form onSubmit={this.handleSubmit}>
+                  <TextField
+                    onChange={this.handleChange("email")}
+                    label="e-mail address"
+                    value={this.state.email}
+                    type="email"
+                    required={true}
+                    fullWidth
+                    InputProps={{
+                      classes: {
+                        inkbar: classes.inputInkbar
+                      }
+                    }}
+                    InputLabelProps={{
+                      classes: {
+                        shrink: classes.labelShrink
+                      }
+                    }}
+                  />
+                  <BlockButton
+                    type="submit"
+                    classes={{
+                      root: classes.submitButton
+                    }}
+                  >
+                    Subscribe
+                  </BlockButton>
+                </form>
+              </div>
+            )}
+          {subscription && (
+            <div className={classes.instruction}>
+              <h1>Confirm your subscription</h1>
+              <p>We have sent you an e-mail validation message.</p>
+              <p>
+                Please, open your e-mail client and find a message from{" "}
+                <em>Will at lazywill.com</em> with a subject{" "}
+                <em>Please confirm your Newsletter subscription</em>.
+              </p>
+              <p>Open the message and click the confirmation link.</p>
+              <p>Thank you and see you soon</p>
+              <p>
+                lazy Will
+                <span className={classes.avatar}>
+                  <SvgEl svg={LOGOS.AVATAR} />
+                </span>{" "}
+              </p>
+            </div>
+          )}
+          {fetching && (
+            <div className={classes.textBox}>
+              <Loading />
+            </div>
+          )}
         </div>
       </Hammer>
     );
