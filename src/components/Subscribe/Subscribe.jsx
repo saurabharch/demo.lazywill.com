@@ -103,6 +103,8 @@ class Subscribe extends React.Component {
         _nonce: "d1b3e2f10d"
       },
       header: {
+        "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+        Accept: "application/json, text/javascript, */*; q=0.01",
         "X-Requested-With": "XMLHttpRequest"
       }
     }).then(function(response) {
@@ -126,7 +128,7 @@ class Subscribe extends React.Component {
               <span className={classes.logo}>
                 <SvgEl svg={LOGOS.MAIN} />
               </span>
-              Newsletter
+              Newsletter@
             </h1>
             <p>Do you like what you've seen?</p>
             <p>
