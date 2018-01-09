@@ -103,10 +103,9 @@ class Subscribe extends React.Component {
         _nonce: "d1b3e2f10d"
       },
       header: {
-        "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
-        "Accept": "application/json",
+        "Content-Type": "application/x-www-form-urlencoded",
+        Accept: "application/json",
         "Accept-Encoding": "gzip, deflate",
-        "Content-Type": "application/x-www-form-urlencoded"
         "X-Requested-With": "XMLHttpRequest"
       }
     }).then(function(response) {
