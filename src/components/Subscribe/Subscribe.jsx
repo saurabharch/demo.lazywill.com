@@ -92,8 +92,22 @@ class Subscribe extends React.Component {
   };
 
   handleSubmit = event => {
-    alert(`An email was submitted: ${this.state.email}`);
+    console.log("form submited");
     event.preventDefault();
+
+    fetch("http://subscription.lazywill.com/mailster/subscribe", {
+      method: "POST",
+      body: {
+        formid: 1,
+        email: this.state.email,
+        _nonce: "d1b3e2f10d"
+      },
+      header: {
+        "X-Requested-With": "XMLHttpRequest"
+      }
+    }).then(function(response) {
+      console.log(response);
+    });
   };
 
   handleSwipe() {

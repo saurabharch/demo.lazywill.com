@@ -4591,10 +4591,6 @@ nopt@^4.0.1:
     abbrev "1"
     osenv "^0.1.4"
 
-normalize-jss@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/normalize-jss/-/normalize-jss-4.0.0.tgz#355e514127e7ba8f4b38a7e705cfeb86507ea0dd"
-
 normalize-package-data@^2.3.2, normalize-package-data@^2.3.4:
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/normalize-package-data/-/normalize-package-data-2.4.0.tgz#12f95a307d58352075a04907b84ac8be98ac012f"
@@ -4667,6 +4663,10 @@ oauth-sign@~0.8.1, oauth-sign@~0.8.2:
 object-assign@4.1.1, object-assign@^4.0.1, object-assign@^4.1.0, object-assign@^4.1.1:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/object-assign/-/object-assign-4.1.1.tgz#2109adc7965887cfc05cbbd442cac8bfbb360863"
+
+object-assign@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/object-assign/-/object-assign-3.0.0.tgz#9bedd5ca0897949bca47e7ff408062d549f587f2"
 
 object-hash@^1.1.4:
   version "1.2.0"
@@ -5451,6 +5451,22 @@ react-apollo@^2.0.4:
     lodash.pick "^4.4.0"
     prop-types "^15.5.8"
 
+react-autosuggest@^9.3.2:
+  version "9.3.2"
+  resolved "https://registry.yarnpkg.com/react-autosuggest/-/react-autosuggest-9.3.2.tgz#dd8c0fbe9c25aa94afe296180353647f6ecc10a7"
+  dependencies:
+    prop-types "^15.5.10"
+    react-autowhatever "^10.1.0"
+    shallow-equal "^1.0.0"
+
+react-autowhatever@^10.1.0:
+  version "10.1.0"
+  resolved "https://registry.yarnpkg.com/react-autowhatever/-/react-autowhatever-10.1.0.tgz#41f6d69382437d3447a0a3c8913bb8ca2feaabc1"
+  dependencies:
+    prop-types "^15.5.8"
+    react-themeable "^1.1.0"
+    section-iterator "^2.0.0"
+
 react-dev-utils@^4.2.1:
   version "4.2.1"
   resolved "https://registry.yarnpkg.com/react-dev-utils/-/react-dev-utils-4.2.1.tgz#9f2763e7bafa1a1b9c52254d2a479deec280f111"
@@ -5496,6 +5512,10 @@ react-event-listener@^0.5.0, react-event-listener@^0.5.1:
     prop-types "^15.6.0"
     warning "^3.0.0"
 
+react-form-validator-core@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/react-form-validator-core/-/react-form-validator-core-0.3.0.tgz#36d09644572538685e6b6025b52d53b66764c2b9"
+
 react-hammerjs@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/react-hammerjs/-/react-hammerjs-1.0.1.tgz#bc1ed9e9ef7da057163fb169ce12917b6d6ca7d8"
@@ -5526,6 +5546,10 @@ react-loadable@^5.3.1:
   resolved "https://registry.yarnpkg.com/react-loadable/-/react-loadable-5.3.1.tgz#9699e9a08fed49bacd69caaa282034b62a76bcdd"
   dependencies:
     prop-types "^15.5.0"
+
+react-material-ui-form-validator@^2.0.0-beta.3:
+  version "2.0.0-beta.3"
+  resolved "https://registry.yarnpkg.com/react-material-ui-form-validator/-/react-material-ui-form-validator-2.0.0-beta.3.tgz#4bec76dc14285b4f1d835b63b8042752b5895747"
 
 react-popper@^0.7.4:
   version "0.7.5"
@@ -5614,6 +5638,12 @@ react-side-effect@^1.1.0:
   dependencies:
     exenv "^1.2.1"
     shallowequal "^1.0.1"
+
+react-themeable@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/react-themeable/-/react-themeable-1.1.0.tgz#7d4466dd9b2b5fa75058727825e9f152ba379a0e"
+  dependencies:
+    object-assign "^3.0.0"
 
 react-transition-group@^2.2.1:
   version "2.2.1"
@@ -6017,6 +6047,10 @@ scroll@^2.0.1:
   dependencies:
     rafl "~1.2.1"
 
+section-iterator@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/section-iterator/-/section-iterator-2.0.0.tgz#bf444d7afeeb94ad43c39ad2fb26151627ccba2a"
+
 select-hose@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/select-hose/-/select-hose-2.0.0.tgz#625d8658f865af43ec962bfc376a37359a4994ca"
@@ -6106,6 +6140,10 @@ sha.js@^2.4.0, sha.js@^2.4.8:
   dependencies:
     inherits "^2.0.1"
     safe-buffer "^5.0.1"
+
+shallow-equal@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/shallow-equal/-/shallow-equal-1.0.0.tgz#508d1838b3de590ab8757b011b25e430900945f7"
 
 shallowequal@^1.0.1:
   version "1.0.2"
