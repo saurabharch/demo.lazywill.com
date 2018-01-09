@@ -95,22 +95,48 @@ class Subscribe extends React.Component {
     console.log("form submited");
     event.preventDefault();
 
-    fetch("https://subscription.lazywill.com/mailster/subscribe", {
+    var params = {
+      email: this.state.email,
+      formid: "1",
+      _nonce: "d1b3e2f10d"
+    };
+
+    var formData = new FormData();
+    for (var k in params) {
+      formData.append(k, params[k]);
+    }
+
+    var headers = new Headers();
+    headers.append("X-Requested-With", "XMLHttpRequest");
+
+    var request = {
       method: "POST",
-      body: JSON.stringify({
-        formid: 1,
-        email: this.state.email,
-        _nonce: "d1b3e2f10d"
-      }),
-      headers: {
-        "Content-Type": "application/json, application/x-www-form-urlencoded",
-        Accept: "application/json",
-        "Accept-Encoding": "gzip, deflate",
-        "X-Requested-With": "XMLHttpRequest"
+      headers: headers,
+      body: formData
+    };
+
+    fetch("https://subscription.lazywill.com/mailster/subscribe", request).then(
+      function(response) {
+        console.log(response);
       }
-    }).then(function(response) {
-      console.log(response);
-    });
+    );
+
+    // fetch("https://subscription.lazywill.com/mailster/subscribe", {
+    //   method: "POST",
+    //   body: JSON.stringify({
+    //     formid: 1,
+    //     email: "gregloby+0000@gmail.com",
+    //     _nonce: "d1b3e2f10d"
+    //   }),
+    //   headers: {
+    //     "Content-Type": "application/x-www-form-urlencoded",
+    //     Accept: "application/json",
+    //     "Accept-Encoding": "gzip, deflate",
+    //     "X-Requested-With": "XMLHttpRequest"
+    //   }
+    // }).then(function(response) {
+    //   console.log(response);
+    // });
   };
 
   handleSwipe() {
@@ -129,7 +155,7 @@ class Subscribe extends React.Component {
               <span className={classes.logo}>
                 <SvgEl svg={LOGOS.MAIN} />
               </span>
-              Newsletter3
+              Newsletter5
             </h1>
             <p>Do you like what you've seen?</p>
             <p>
