@@ -104,7 +104,9 @@ class Subscribe extends React.Component {
       },
       header: {
         "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
-        Accept: "application/json, text/javascript, */*; q=0.01",
+        "Accept": "application/json",
+        "Accept-Encoding": "gzip, deflate",
+        "Content-Type": "application/x-www-form-urlencoded"
         "X-Requested-With": "XMLHttpRequest"
       }
     }).then(function(response) {
