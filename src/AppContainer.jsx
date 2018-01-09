@@ -39,7 +39,8 @@ class AppContainer extends React.Component {
       nextActiveCombo: null,
       windowWidth: document.documentElement.clientWidth,
       windowHeight: document.documentElement.clientHeight,
-      subscription: false
+      subscription: false,
+      subscriptionConfirmed: false
     };
 
     this.windowResizeHandler = this.windowResizeHandler.bind(this);
@@ -81,8 +82,6 @@ class AppContainer extends React.Component {
   }
 
   changeActiveCombo() {
-    console.log(Route);
-
     const newStateValues = this.drawNewActiveCombo();
 
     this.setState(() => ({
@@ -128,11 +127,12 @@ class AppContainer extends React.Component {
     };
   }
 
-  updateSubscription() {
+  updateSubscription = (subscription, subscriptionConfirmed) => {
     this.setState({
-      subscription: true
+      subscription: subscription,
+      subscriptionConfirmed: subscriptionConfirmed
     });
-  }
+  };
 
   render() {
     const { windowWidth, windowHeight, unseenCombos, seenCombos } = this.state;
@@ -172,7 +172,8 @@ class AppContainer extends React.Component {
             render={() => (
               <AsyncSubscribe
                 subscription={this.state.subscription}
-                update={this.updateSubscription}
+                subscriptionConfirmed={this.state.subscriptionConfirmed}
+                updateSubscription={this.updateSubscription}
               />
             )}
           />

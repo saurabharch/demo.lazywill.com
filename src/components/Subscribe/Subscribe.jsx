@@ -90,7 +90,8 @@ class Subscribe extends React.Component {
 
     this.state = {
       email: "",
-      fetching: false
+      fetching: false,
+      error: false
     };
   }
 
@@ -123,15 +124,28 @@ class Subscribe extends React.Component {
       body: formData
     };
 
-    fetch("https://subscription.lazywill.com/mailster/subscribe", request)
+    fetch("https://subscription.lazywill.com/mailster/subsscribe", request)
       .then(resp => resp.json())
       .then(data => {
-        if (data.success) {
-          this.setState({
-            fetching: false
-          });
-          this.props.update();
+        this.setState({
+          fetching: false
+        });
+
+        let subscriptionConfirmed = false;
+        if (
+          data.fields.email === "You are already registered" &&
+          !data.fields.confirmation
+        ) {
+          subscriptionConfirmed = true;
         }
+
+        this.props.updateSubscription(true, subscriptionConfirmed);
+      })
+      .catch(err => {
+        this.setState({
+          error: true,
+          fetching: false
+        });
       });
   };
 
@@ -140,14 +154,15 @@ class Subscribe extends React.Component {
   }
 
   render() {
-    const { classes, subscription } = this.props;
-    const { fetching } = this.state;
+    const { classes, subscription, subscriptionConfirmed } = this.props;
+    const { fetching, error } = this.state;
 
     return (
       <Hammer onSwipeRight={this.handleSwipe}>
         <div className={classes.root}>
           {!subscription &&
-            !fetching && (
+            !fetching &&
+            !error && (
               <div className={classes.invitation}>
                 <h2>Subscribe to</h2>
                 <h1>
@@ -199,17 +214,47 @@ class Subscribe extends React.Component {
                 </form>
               </div>
             )}
-          {subscription && (
+          {subscription &&
+            !subscriptionConfirmed && (
+              <div className={classes.instruction}>
+                <h1>Confirm your subscription</h1>
+                <p>We have sent you an e-mail validation message.</p>
+                <p>
+                  Please, open your e-mail client and find a message from{" "}
+                  <em>Will at lazywill.com</em> with a subject{" "}
+                  <em>Please confirm your Newsletter subscription</em>.
+                </p>
+                <p>Open the message and click the confirmation link.</p>
+                <p>Thank you and see you soon</p>
+                <p>
+                  lazy Will
+                  <span className={classes.avatar}>
+                    <SvgEl svg={LOGOS.AVATAR} />
+                  </span>{" "}
+                </p>
+              </div>
+            )}
+          {subscription &&
+            subscriptionConfirmed && (
+              <div className={classes.instruction}>
+                <h1>Thank you</h1>
+                <p>
+                  The subscription for the given e-mail address already exists.
+                </p>
+                <p>See you soon</p>
+                <p>
+                  lazy Will
+                  <span className={classes.avatar}>
+                    <SvgEl svg={LOGOS.AVATAR} />
+                  </span>{" "}
+                </p>
+              </div>
+            )}
+          {error && (
             <div className={classes.instruction}>
-              <h1>Confirm your subscription</h1>
-              <p>We have sent you an e-mail validation message.</p>
-              <p>
-                Please, open your e-mail client and find a message from{" "}
-                <em>Will at lazywill.com</em> with a subject{" "}
-                <em>Please confirm your Newsletter subscription</em>.
-              </p>
-              <p>Open the message and click the confirmation link.</p>
-              <p>Thank you and see you soon</p>
+              <h1>Oooops...</h1>
+              <p>I'm sorry, but something went wrong.</p>
+              <p>Please reaload the app and try again.</p>
               <p>
                 lazy Will
                 <span className={classes.avatar}>

@@ -44,7 +44,7 @@ const ContextNav = props => {
   }
 
   function onNextClick() {
-    if (seenCombos === 15 || unseenCombos === 1) {
+    if (seenCombos === 25 || unseenCombos === 1) {
       history.push("/subs");
     }
 
@@ -57,7 +57,7 @@ const ContextNav = props => {
     <nav
       className={`
         ${classes.root}         
-        ${seenCombos > 5 ? "subs-button" : ""}
+        ${seenCombos > 10 ? "subs-button" : ""}
         ${currentRoute}-screen 
         ${getOrientationClass(windowWidth, windowHeight)}
       `}
