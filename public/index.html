@@ -52,11 +52,11 @@
     }
 
     #splash .inner:first-child {
-      padding: 10% 0 0;
+      padding: 15% 0 0;
     }
 
     #splash .inner:last-child {
-      padding: 0 0 10%;
+      padding: 0 0 15%;
     }
 
     #splash h1 {
@@ -166,9 +166,9 @@
       }
     }
 
-    @media (orientation: landscape) and (max-width: 1023px) {
+    @media (orientation: landscape) {
       #splash .inner {
-
+        max-width: none;
         width: 50%;
         float: left;
         margin: 0;
@@ -183,7 +183,12 @@
       #splash .inner:last-child {
         padding: 2em 0;
       }
+    }
 
+    @media (min-width: 600px) {
+      #splash p {
+        font-size: 1.3em;
+      }
     }
 
 
