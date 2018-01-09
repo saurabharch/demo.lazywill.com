@@ -81,6 +81,8 @@ class AppContainer extends React.Component {
   }
 
   changeActiveCombo() {
+    console.log(Route);
+
     const newStateValues = this.drawNewActiveCombo();
 
     this.setState(() => ({

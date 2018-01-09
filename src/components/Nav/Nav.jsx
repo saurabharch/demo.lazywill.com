@@ -22,6 +22,18 @@ const styles = theme => ({
 });
 
 const ContextNav = props => {
+  const {
+    classes,
+    location,
+    windowWidth,
+    windowHeight,
+    seenCombos,
+    unseenCombos,
+    history
+  } = props;
+  const { pathname } = location;
+  const currentRoute = getCurrentRoute(pathname);
+
   function getCurrentRoute(pathname) {
     const currentRoute = pathname.slice(1);
     return currentRoute === "" ? "home" : currentRoute;
@@ -31,17 +43,15 @@ const ContextNav = props => {
     return width >= height ? "landscape" : "portrait";
   }
 
-  const {
-    classes,
-    location,
-    onNextClick,
-    windowWidth,
-    windowHeight,
-    seenCombos
-  } = props;
+  function onNextClick() {
+    if (seenCombos === 15 || unseenCombos === 1) {
+      history.push("/subs");
+    }
 
-  const { pathname } = location;
-  const currentRoute = getCurrentRoute(pathname);
+    if (unseenCombos > 1) {
+      props.onNextClick();
+    }
+  }
 
   return (
     <nav
