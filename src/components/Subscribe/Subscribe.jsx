@@ -100,7 +100,8 @@ class Subscribe extends React.Component {
       body: {
         formid: 1,
         email: this.state.email,
-        _nonce: "d1b3e2f10d"
+        _nonce: "d1b3e2f10d",
+        _referer: "https://loving-dijkstra-392737.netlify.com/"
       },
       header: {
         "Content-Type": "application/x-www-form-urlencoded",
