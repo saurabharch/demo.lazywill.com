@@ -14,10 +14,10 @@ const globals = {
         width: "6px"
       },
       "*::-webkit-scrollbar-track": {
-        background: "#eee"
+        background: theme.palette.background.third
       },
       "*::-webkit-scrollbar-thumb": {
-        backgroundColor: "#ccc"
+        backgroundColor: theme.palette.background.first
       }
     }
   }
