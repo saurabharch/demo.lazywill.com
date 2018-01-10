@@ -1,6 +1,5 @@
 import React from "react";
 import injectSheet from "react-jss";
-
 import PictureCredits from "../PictureCredits/";
 import SpotArea from "../SpotArea/";
 import PictureModeToggle from "./PictureModeToggle";

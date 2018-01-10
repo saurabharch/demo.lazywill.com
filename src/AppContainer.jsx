@@ -160,7 +160,6 @@ class AppContainer extends React.Component {
               <AsyncBrowser
                 combo={this.state.activeCombo}
                 nextCombo={this.state.nextActiveCombo}
-                onSwipe={this.changeActiveCombo}
                 windowWidth={windowWidth}
                 windowHeight={windowHeight}
               />

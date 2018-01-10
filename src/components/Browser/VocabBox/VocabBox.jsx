@@ -1,5 +1,4 @@
 import React from "react";
-import Hammer from "react-hammerjs";
 import injectSheet from "react-jss";
 import PictureBox from "../PictureBox/";
 import TextsBox from "../TextsBox/";
@@ -38,26 +37,24 @@ class VocabBox extends React.Component {
     const { classes, combo, nextCombo, windowWidth, windowHeight } = this.props;
 
     return (
-      <Hammer onSwipeLeft={this.handleSwipe}>
-        <div
-          className={`${classes.root} ${this.getOrientationClass(
-            windowWidth,
-            windowHeight
-          )}`}
-        >
-          <PictureBox
-            combo={combo}
-            nextCombo={nextCombo}
-            windowWidth={windowWidth}
-            windowHeight={windowHeight}
-          />
-          <TextsBox
-            combo={combo}
-            windowWidth={windowWidth}
-            windowHeight={windowHeight}
-          />
-        </div>
-      </Hammer>
+      <div
+        className={`${classes.root} ${this.getOrientationClass(
+          windowWidth,
+          windowHeight
+        )}`}
+      >
+        <PictureBox
+          combo={combo}
+          nextCombo={nextCombo}
+          windowWidth={windowWidth}
+          windowHeight={windowHeight}
+        />
+        <TextsBox
+          combo={combo}
+          windowWidth={windowWidth}
+          windowHeight={windowHeight}
+        />
+      </div>
     );
   }
 }
