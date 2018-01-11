@@ -137,12 +137,12 @@ class AppContainer extends React.Component {
   render() {
     const { windowWidth, windowHeight, unseenCombos, seenCombos } = this.state;
 
-    // if (this.props.combosQuery && this.props.combosQuery.loading) {
-    //   return <div>Loading</div>;
-    // }
-    // if (this.props.combosQuery && this.props.combosQuery.error) {
-    //   return <div>Error</div>;
-    // }
+    if (this.props.combosQuery && this.props.combosQuery.loading) {
+      return <Loading />;
+    }
+    if (this.props.combosQuery && this.props.combosQuery.error) {
+      return <Loading error={true} />;
+    }
 
     return (
       <MuiThemeProvider theme={theme}>

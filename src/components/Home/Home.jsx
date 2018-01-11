@@ -84,7 +84,6 @@ const Home = props => {
           <i>Thank you</i>
         </p>
         <p>
-          {" "}
           lazy <b>Will</b>
           <span className={classes.avatar}>
             <SvgEl svg={LOGOS.AVATAR} />

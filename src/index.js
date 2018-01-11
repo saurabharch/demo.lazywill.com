@@ -22,6 +22,7 @@ function revealEntryBtnOnSplashScreen() {
   removeElementAfterTime(loadingIndicator, 2000);
 
   setNewLeftForElement(entryButton, "50%");
+  addAnimationClassToElement(entryButton, "animateSvg");
 
   entryButton.addEventListener("click", function() {
     appContainer.style.display = "block";
@@ -39,4 +40,8 @@ function removeElementAfterTime(el, time) {
   setTimeout(function() {
     el.remove();
   }, time);
+}
+
+function addAnimationClassToElement(el, className) {
+  el.classList.add(className);
 }
