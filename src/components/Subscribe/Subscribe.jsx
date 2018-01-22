@@ -132,6 +132,8 @@ class Subscribe extends React.Component {
 
         let subscriptionConfirmed = false;
         if (
+          data.fields &&
+          data.fields.email &&
           data.fields.email === "You are already registered" &&
           !data.fields.confirmation
         ) {
@@ -141,6 +143,7 @@ class Subscribe extends React.Component {
         this.props.updateSubscription(true, subscriptionConfirmed);
       })
       .catch(err => {
+        console.log(err);
         this.setState({
           error: true,
           fetching: false

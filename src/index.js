@@ -10,6 +10,8 @@ ReactDOM.render(
   revealEntryBtnOnSplashScreen
 );
 
+//asdfasdfa
+
 registerServiceWorker();
 
 function revealEntryBtnOnSplashScreen() {
