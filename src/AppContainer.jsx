@@ -2,7 +2,6 @@ import React from "react";
 import { MuiThemeProvider } from "material-ui/styles";
 import Reboot from "material-ui/Reboot";
 import injectSheet from "react-jss";
-//import normalize from "normalize-jss";
 import { Switch, Route } from "react-router-dom";
 import Loadable from "react-loadable";
 import Loading from "./components/shared/Loading/";

@@ -10,8 +10,6 @@ ReactDOM.render(
   revealEntryBtnOnSplashScreen
 );
 
-//asdfasdfa
-
 registerServiceWorker();
 
 function revealEntryBtnOnSplashScreen() {
@@ -31,6 +29,10 @@ function revealEntryBtnOnSplashScreen() {
 
     setNewLeftForElement(splashScreen, "-100%");
     removeElementAfterTime(splashScreen, 1100);
+
+    if (typeof window.gtag === `function`) {
+      window.gtag("config", "UA-82862651-1", { page_path: "/home" });
+    }
   });
 }
 

@@ -14,23 +14,44 @@ const styles = theme => ({
   }
 });
 
-const Browser = props => {
-  const { classes, combo, nextCombo, windowWidth, windowHeight } = props;
+class Browser extends React.Component {
+  componentDidMount() {
+    if (typeof window.gtag === `function`) {
+      window.gtag("config", "UA-82862651-1", { page_path: "/browse" });
+      window.gtag("event", "vocab_view", {
+        event_category: "engagement"
+      });
+    }
+  }
 
-  return (
-    <div className={classes.root}>
-      {combo && (
-        <React.Fragment>
-          <VocabBox
-            combo={combo}
-            nextCombo={nextCombo}
-            windowWidth={windowWidth}
-            windowHeight={windowHeight}
-          />
-        </React.Fragment>
-      )}
-    </div>
-  );
-};
+  componentDidUpdate(prevProps, prevState) {
+    if (
+      typeof window.gtag === `function` &&
+      prevProps.combo !== this.props.combo
+    ) {
+      window.gtag("event", "vocab_view", {
+        event_category: "engagement"
+      });
+    }
+  }
+  render() {
+    const { classes, combo, nextCombo, windowWidth, windowHeight } = this.props;
+
+    return (
+      <div className={classes.root}>
+        {combo && (
+          <React.Fragment>
+            <VocabBox
+              combo={combo}
+              nextCombo={nextCombo}
+              windowWidth={windowWidth}
+              windowHeight={windowHeight}
+            />
+          </React.Fragment>
+        )}
+      </div>
+    );
+  }
+}
 
 export default injectSheet(styles)(Browser);

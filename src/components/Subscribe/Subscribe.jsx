@@ -94,6 +94,12 @@ class Subscribe extends React.Component {
     };
   }
 
+  componentDidMount() {
+    if (typeof window.gtag === `function`) {
+      window.gtag("config", "UA-82862651-1", { page_path: "/subs" });
+    }
+  }
+
   handleChange = name => event => {
     this.setState({
       [name]: event.target.value
@@ -141,6 +147,13 @@ class Subscribe extends React.Component {
         }
 
         this.props.updateSubscription(true, subscriptionConfirmed);
+
+        if (typeof window.gtag === `function`) {
+          window.gtag("event", "newsletter_sign_up", {
+            event_category: "engagement",
+            event_label: "success"
+          });
+        }
       })
       .catch(err => {
         console.log(err);
@@ -148,6 +161,13 @@ class Subscribe extends React.Component {
           error: true,
           fetching: false
         });
+
+        if (typeof window.gtag === `function`) {
+          window.gtag("event", "newsletter_sign_up", {
+            event_category: "engagement",
+            event_label: "error"
+          });
+        }
       });
   };
 
@@ -227,7 +247,7 @@ class Subscribe extends React.Component {
               <p>Open the message and click the confirmation link.</p>
               <p>Thank you and see you soon</p>
               <p>
-                lazy Will
+                <b>Will</b>
                 <span className={classes.avatar}>
                   <SvgEl svg={LOGOS.AVATAR} />
                 </span>{" "}
@@ -243,7 +263,7 @@ class Subscribe extends React.Component {
               </p>
               <p>See you soon</p>
               <p>
-                lazy Will
+                <b>Will</b>
                 <span className={classes.avatar}>
                   <SvgEl svg={LOGOS.AVATAR} />
                 </span>{" "}
@@ -256,7 +276,7 @@ class Subscribe extends React.Component {
             <p>I'm sorry, but something went wrong.</p>
             <p>Please reaload the app and try again.</p>
             <p>
-              lazy Will
+              <b>Will</b>
               <span className={classes.avatar}>
                 <SvgEl svg={LOGOS.AVATAR} />
               </span>{" "}
