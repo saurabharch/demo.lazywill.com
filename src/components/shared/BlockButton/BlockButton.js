@@ -4,7 +4,7 @@ import { withStyles } from "material-ui/styles";
 
 import Button from "material-ui/Button";
 
-const styles = theme => ({
+const styles = () => ({
   root: {
     borderRadius: 0,
     border: 0,
@@ -24,11 +24,7 @@ const styles = theme => ({
 const BlockButton = props => {
   const { classes, children, onClick } = props;
   return (
-    <Button
-      {...props}
-      classes={{ root: classes.root, label: classes.label }}
-      onClick={onClick}
-    >
+    <Button {...props} classes={{ root: classes.root, label: classes.label }} onClick={onClick}>
       {children}
     </Button>
   );
@@ -37,7 +33,8 @@ const BlockButton = props => {
 BlockButton.propTypes = {
   classes: PropTypes.object.isRequired,
   children: PropTypes.node,
-  look: PropTypes.string
+  look: PropTypes.string,
+  onClick: PropTypes.onClick.isRequired
 };
 
 export default withStyles(styles)(BlockButton);

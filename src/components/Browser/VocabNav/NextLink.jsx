@@ -44,11 +44,7 @@ const NextLink = props => {
     >
       {!comboIsLoading ? "next" : "loading"}
       {comboIsLoading ? (
-        <CircularProgress
-          className={classes.progress}
-          thickness={6}
-          size={24}
-        />
+        <CircularProgress className={classes.progress} thickness={6} size={24} />
       ) : (
         <ArrowForward />
       )}

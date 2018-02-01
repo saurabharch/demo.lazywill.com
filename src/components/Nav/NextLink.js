@@ -3,12 +3,13 @@ import { Link } from "react-router-dom";
 import { withStyles } from "material-ui/styles";
 import injectSheet from "react-jss";
 import Color from "color";
+import PropTypes from "prop-types";
 
-import BlockButton from "../shared/BlockButton";
 import ArrowBack from "material-ui-icons/ArrowBack";
 import ArrowForward from "material-ui-icons/ArrowForward";
+import BlockButton from "../shared/BlockButton";
 
-const superstyles = theme => ({
+const superstyles = () => ({
   root: {
     ".subs-screen &": {
       left: "61px",
@@ -54,8 +55,8 @@ const styles = theme => ({
 const NextLink = props => {
   const { classes, onClick, currentRoute } = props;
 
-  function getTarget(currentRoute) {
-    if (currentRoute === "subs") {
+  function getTarget(route) {
+    if (route === "subs") {
       return "/browse";
     } else {
       return "#";
@@ -80,6 +81,12 @@ const NextLink = props => {
       {currentRoute === "browse" ? <ArrowForward /> : <ArrowBack />}
     </BlockButton>
   );
+};
+
+NextLink.propTypes = {
+  classes: PropTypes.object.isRequired,
+  onClick: PropTypes.func.isRequired,
+  currentRoute: PropTypes.string.isRequired
 };
 
 export default injectSheet(superstyles)(withStyles(styles)(NextLink));

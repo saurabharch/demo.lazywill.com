@@ -21,10 +21,7 @@ const Loading = props => {
       >
         <p>Seems that there is a problem.</p>
         <p>We cannot connect with the server to load the data.</p>
-        <p>
-          Please check your Internet connection. If it's not the cause please
-          try later.
-        </p>
+        <p>Please check your Internet connection. If it{`'`}s not the cause please try later.</p>
         <p>I am sorry for the inconvenience.</p>
         <p>
           lazy <b>Will</b>

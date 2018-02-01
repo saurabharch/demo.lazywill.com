@@ -111,16 +111,13 @@ class PictureBox extends React.Component {
       return pictureLoading;
     }
     if (size) {
-      return `https://d3nstmfkiycslv.cloudfront.net/${
-        combo.picture.arangoKey
-      }_${combo.picture.hash}_${size}.jpeg`;
+      return `https://d3nstmfkiycslv.cloudfront.net/${combo.picture.arangoKey}_${
+        combo.picture.hash
+      }_${size}.jpeg`;
     } else {
-      return `https://d3nstmfkiycslv.cloudfront.net/${
-        combo.picture.arangoKey
-      }_${combo.picture.hash}_${this.getPictureSize(
-        windowWidth,
-        windowHeigh
-      )}.jpeg`;
+      return `https://d3nstmfkiycslv.cloudfront.net/${combo.picture.arangoKey}_${
+        combo.picture.hash
+      }_${this.getPictureSize(windowWidth, windowHeigh)}.jpeg`;
     }
   }
 
@@ -160,23 +157,12 @@ class PictureBox extends React.Component {
     const pictureMode = this.state.pictureMode;
 
     return (
-      <div
-        className={`${classes.root} ${
-          pictureMode ? "picture-mode" : "vocab-mode"
-        }`}
-      >
+      <div className={`${classes.root} ${pictureMode ? "picture-mode" : "vocab-mode"}`}>
         {combo && (
           <React.Fragment>
-            <img
-              src={this.state.pictureSrc}
-              className={classes.picture}
-              alt=""
-            />
+            <img src={this.state.pictureSrc} className={classes.picture} alt="" />
             <SpotArea spot={combo.spot} />
-            <PictureModeToggle
-              onClick={this.togglePictureMode}
-              pictureMode={pictureMode}
-            />
+            <PictureModeToggle onClick={this.togglePictureMode} pictureMode={pictureMode} />
             <div className={classes.logo}>
               <SvgEl svg={LOGOS.MAIN} />
             </div>

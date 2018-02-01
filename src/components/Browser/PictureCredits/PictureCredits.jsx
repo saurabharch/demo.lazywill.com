@@ -16,13 +16,7 @@ const styles = theme => ({
   }
 });
 
-const PictureCredits = ({
-  picture,
-  classes,
-  onClick,
-  detailsOpened,
-  ...props
-}) => {
+const PictureCredits = ({ picture, classes, onClick, detailsOpened, ...props }) => {
   return (
     <div className={`${classes.root} ${detailsOpened ? "opened" : ""}`}>
       <CreditsDetailsToggle detailsOpened={detailsOpened} onClick={onClick} />

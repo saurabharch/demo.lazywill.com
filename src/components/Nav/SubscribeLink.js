@@ -2,9 +2,10 @@ import React from "react";
 import { withStyles } from "material-ui/styles";
 import { Link } from "react-router-dom";
 import Color from "color";
+import PropTypes from "prop-types";
+import MailOutline from "material-ui-icons/MailOutline";
 
 import SquareButton from "../shared/SquareButton";
-import MailOutline from "material-ui-icons/MailOutline";
 
 const styles = theme => ({
   root: {
@@ -35,6 +36,10 @@ const SubscribeLink = props => {
       <MailOutline />
     </SquareButton>
   );
+};
+
+SubscribeLink.propTypes = {
+  classes: PropTypes.object.isRequired
 };
 
 export default withStyles(styles)(SubscribeLink);

@@ -2,7 +2,9 @@ import React from "react";
 import { withStyles } from "material-ui/styles";
 import ArrowForward from "material-ui-icons/ArrowForward";
 import IconButton from "material-ui/IconButton";
-import SvgEl from "../SvgEl/";
+import PropTypes from "prop-types";
+
+import SvgEl from "../shared/SvgEl/";
 import { LOGOS } from "../../constants/logos";
 
 const styles = theme => ({
@@ -99,8 +101,8 @@ const WelcomeScreen = props => {
         <SvgEl svg={LOGOS.MAIN} />
       </div>
       <p>
-        This is a small sneak preview of a coming <b>vocabulary</b> learning app
-        for declared <b>visual</b> learners.
+        This is a small sneak preview of a coming <b>vocabulary</b> learning app for declared{" "}
+        <b>visual</b> learners.
       </p>
       <p>Take a look and share with me what you think</p>
       <p className={props.classes.sign}>
@@ -114,6 +116,10 @@ const WelcomeScreen = props => {
       </IconButton>
     </div>
   );
+};
+
+WelcomeScreen.propTypes = {
+  classes: PropTypes.object.isRequired
 };
 
 export default withStyles(styles)(WelcomeScreen);

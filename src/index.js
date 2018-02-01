@@ -4,11 +4,7 @@ import whatInput from "what-input"; // eslint-disable-line no-unused-vars
 import AppLoader from "./AppLoader";
 import registerServiceWorker from "./registerServiceWorker";
 
-ReactDOM.render(
-  <AppLoader />,
-  document.getElementById("app"),
-  revealEntryBtnOnSplashScreen
-);
+ReactDOM.render(<AppLoader />, document.getElementById("app"), revealEntryBtnOnSplashScreen);
 
 registerServiceWorker();
 

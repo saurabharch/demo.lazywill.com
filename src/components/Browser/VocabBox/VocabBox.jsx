@@ -37,23 +37,14 @@ class VocabBox extends React.Component {
     const { classes, combo, nextCombo, windowWidth, windowHeight } = this.props;
 
     return (
-      <div
-        className={`${classes.root} ${this.getOrientationClass(
-          windowWidth,
-          windowHeight
-        )}`}
-      >
+      <div className={`${classes.root} ${this.getOrientationClass(windowWidth, windowHeight)}`}>
         <PictureBox
           combo={combo}
           nextCombo={nextCombo}
           windowWidth={windowWidth}
           windowHeight={windowHeight}
         />
-        <TextsBox
-          combo={combo}
-          windowWidth={windowWidth}
-          windowHeight={windowHeight}
-        />
+        <TextsBox combo={combo} windowWidth={windowWidth} windowHeight={windowHeight} />
       </div>
     );
   }

@@ -1,6 +1,7 @@
 import React from "react";
 import injectSheet from "react-jss";
 import TextField from "material-ui/TextField";
+import PropTypes from "prop-types";
 import Color from "color";
 
 import { LOGOS } from "../../constants/logos";
@@ -192,18 +193,13 @@ class Subscribe extends React.Component {
                 </span>
                 Newsletter
               </h1>
-              <p>Do you like what you've seen?</p>
+              <p>Do you like what you{`'`}ve seen?</p>
               <p>
-                Unfortunately, that's all what I can show you for now. The app
-                is still in development.{" "}
+                Unfortunately, that{`'`}s all what I can show you for now. The app is still in
+                development.{" "}
               </p>
-              <p>
-                Subscribe to the Newsletter and I will inform your about the
-                progress of work.
-              </p>
-              <p>
-                Do not miss your chance to try out the app as one of the firsts.
-              </p>
+              <p>Subscribe to the Newsletter and I will inform your about the progress of work.</p>
+              <p>Do not miss your chance to try out the app as one of the firsts.</p>
               <form onSubmit={this.handleSubmit}>
                 <TextField
                   onChange={this.handleChange("email")}
@@ -258,9 +254,7 @@ class Subscribe extends React.Component {
           subscriptionConfirmed && (
             <div className={classes.instruction}>
               <h1>Thank you</h1>
-              <p>
-                The subscription for the given e-mail address already exists.
-              </p>
+              <p>The subscription for the given e-mail address already exists.</p>
               <p>See you soon</p>
               <p>
                 <b>Will</b>
@@ -273,7 +267,7 @@ class Subscribe extends React.Component {
         {error && (
           <div className={classes.instruction}>
             <h1>Oooops...</h1>
-            <p>I'm sorry, but something went wrong.</p>
+            <p>I{`'`}m sorry, but something went wrong.</p>
             <p>Please reaload the app and try again.</p>
             <p>
               <b>Will</b>
@@ -292,5 +286,13 @@ class Subscribe extends React.Component {
     );
   }
 }
+
+Subscribe.propTypes = {
+  classes: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired,
+  updateSubscription: PropTypes.func.isRequired,
+  subscription: PropTypes.bool.isRequired,
+  subscriptionConfirmed: PropTypes.bool.isRequired
+};
 
 export default injectSheet(styles)(Subscribe);

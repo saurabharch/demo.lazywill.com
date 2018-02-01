@@ -1,9 +1,10 @@
 import React from "react";
 import injectSheet from "react-jss";
+import PropTypes from "prop-types";
 
 import VocabBox from "./VocabBox/";
 
-const styles = theme => ({
+const styles = () => ({
   root: {
     position: "absolute",
     top: 0,
@@ -24,11 +25,8 @@ class Browser extends React.Component {
     }
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    if (
-      typeof window.gtag === `function` &&
-      prevProps.combo !== this.props.combo
-    ) {
+  componentDidUpdate(prevProps) {
+    if (typeof window.gtag === `function` && prevProps.combo !== this.props.combo) {
       window.gtag("event", "vocab_view", {
         event_category: "engagement"
       });
@@ -53,5 +51,13 @@ class Browser extends React.Component {
     );
   }
 }
+
+Browser.propTypes = {
+  classes: PropTypes.object.isRequired,
+  combo: PropTypes.object.isRequired,
+  nextCombo: PropTypes.object.isRequired,
+  windowWidth: PropTypes.number,
+  windowHeight: PropTypes.number
+};
 
 export default injectSheet(styles)(Browser);

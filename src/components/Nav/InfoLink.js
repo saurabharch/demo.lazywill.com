@@ -23,12 +23,7 @@ const InfoLink = props => {
   const { classes, onClick } = props;
 
   return (
-    <SquareButton
-      to="/info"
-      component={Link}
-      classes={{ root: classes.root }}
-      onClick={onClick}
-    >
+    <SquareButton to="/info" component={Link} classes={{ root: classes.root }} onClick={onClick}>
       <InfoOutline />
     </SquareButton>
   );

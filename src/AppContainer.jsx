@@ -4,12 +4,13 @@ import Reboot from "material-ui/Reboot";
 import injectSheet from "react-jss";
 import { Switch, Route } from "react-router-dom";
 import Loadable from "react-loadable";
-import Loading from "./components/shared/Loading/";
 import { graphql } from "react-apollo";
 import gql from "graphql-tag";
 
 import theme from "./styles/theme";
 import globals from "./styles/global";
+
+import Loading from "./components/shared/Loading/";
 
 const AsyncHome = Loadable({
   loader: () => import("./components/Home/"),
@@ -67,9 +68,7 @@ class AppContainer extends React.Component {
       this.props.combosQuery.allComboes !== prevProps.combosQuery.allComboes &&
       this.props.combosQuery.allComboes.length
     ) {
-      const newStateValues = this.drawNewActiveCombo(
-        this.props.combosQuery.allComboes
-      );
+      const newStateValues = this.drawNewActiveCombo(this.props.combosQuery.allComboes);
 
       this.setState(() => ({
         unseenCombos: newStateValues.unseenCombos,
@@ -107,9 +106,7 @@ class AppContainer extends React.Component {
       newActiveCombo = this.getRandomElementOfArray(unseenCombos);
     }
 
-    const newActiveComboIndex = unseenCombos.findIndex(
-      combo => combo.id === newActiveCombo.id
-    );
+    const newActiveComboIndex = unseenCombos.findIndex(combo => combo.id === newActiveCombo.id);
 
     const newUnseenCombos = [...unseenCombos];
     newUnseenCombos.splice(newActiveComboIndex, 1);
@@ -147,11 +144,7 @@ class AppContainer extends React.Component {
       <MuiThemeProvider theme={theme}>
         <Reboot />
         <Switch>
-          <Route
-            exact
-            path="/"
-            render={({ history }) => <AsyncHome history={history} />}
-          />
+          <Route exact path="/" render={({ history }) => <AsyncHome history={history} />} />
           <Route
             exact
             path="/browse"
@@ -228,6 +221,4 @@ const COMBOS_QUERY = gql`
   }
 `;
 
-export default graphql(COMBOS_QUERY, { name: "combosQuery" })(
-  injectSheet(globals)(AppContainer)
-);
+export default graphql(COMBOS_QUERY, { name: "combosQuery" })(injectSheet(globals)(AppContainer));

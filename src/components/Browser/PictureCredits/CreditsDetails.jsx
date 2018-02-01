@@ -40,9 +40,7 @@ const styles = theme => ({
 
 const CreditsDetails = props => {
   function getPictureSrc(picture) {
-    return `https://d3nstmfkiycslv.cloudfront.net/${picture.arangoKey}_${
-      picture.hash
-    }_prv.jpeg`;
+    return `https://d3nstmfkiycslv.cloudfront.net/${picture.arangoKey}_${picture.hash}_prv.jpeg`;
   }
 
   const { picture, classes } = props;

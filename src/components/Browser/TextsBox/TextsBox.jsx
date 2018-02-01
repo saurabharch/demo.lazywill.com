@@ -60,14 +60,10 @@ const TextsBox = props => {
           </header>
           <div className={classes.meta}>
             <span className={classes.metaType}>{combo.meaning.type}</span> •{" "}
-            <span className={classes.metaDefinition}>
-              {combo.meaning.definition}
-            </span>
+            <span className={classes.metaDefinition}>{combo.meaning.definition}</span>
           </div>
           <ul className={classes.sentences}>
-            {combo.sentences.map(sentence => (
-              <li key={sentence.id}>{sentence.text}</li>
-            ))}
+            {combo.sentences.map(sentence => <li key={sentence.id}>{sentence.text}</li>)}
           </ul>
         </React.Fragment>
       )}

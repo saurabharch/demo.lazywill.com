@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const SvgEl = props => {
   return (
@@ -14,6 +15,10 @@ const SvgEl = props => {
       {props.svg.path}
     </svg>
   );
+};
+
+SvgEl.propTypes = {
+  svg: PropTypes.object.isRequired
 };
 
 export default SvgEl;
