@@ -34,7 +34,7 @@ BlockButton.propTypes = {
   classes: PropTypes.object.isRequired,
   children: PropTypes.node,
   look: PropTypes.string,
-  onClick: PropTypes.onClick.isRequired
+  onClick: PropTypes.func
 };
 
 export default withStyles(styles)(BlockButton);

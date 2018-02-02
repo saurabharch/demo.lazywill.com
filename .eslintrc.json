@@ -2,7 +2,8 @@
   "env": {
     "browser": true,
     "es6": true,
-    "node": true
+    "node": true,
+    "jest": true
   },
   "extends": ["airbnb-base", "prettier", "eslint:recommended", "plugin:react/recommended"],
   "parser": "babel-eslint",
@@ -22,7 +23,7 @@
     "import/no-dynamic-require": "warn",
     "import/no-extraneous-dependencies": "warn",
     "no-multi-assign": "off",
-    "no-param-reassign": "warn",
+    "no-param-reassign": "off",
     "no-plusplus": "off",
     "no-shadow": "warn",
     "no-underscore-dangle": "warn",

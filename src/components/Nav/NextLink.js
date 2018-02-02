@@ -86,7 +86,7 @@ const NextLink = props => {
 NextLink.propTypes = {
   classes: PropTypes.object.isRequired,
   onClick: PropTypes.func.isRequired,
-  currentRoute: PropTypes.string.isRequired
+  currentRoute: PropTypes.string
 };
 
 export default injectSheet(superstyles)(withStyles(styles)(NextLink));

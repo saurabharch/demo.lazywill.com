@@ -1,11 +1,12 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { withStyles } from "material-ui/styles";
 import { Link } from "react-router-dom";
 import Color from "color";
 
-import SquareButton from "../shared/SquareButton";
 import ArrowForward from "material-ui-icons/ArrowForward";
 import InfoOutline from "material-ui-icons/InfoOutline";
+import SquareButton from "../shared/SquareButton";
 
 const styles = theme => ({
   root: {
@@ -29,8 +30,8 @@ const styles = theme => ({
 const HomeLink = props => {
   const { classes, onClick, currentRoute } = props;
 
-  function getTarget(currentRoute) {
-    if (currentRoute === "home") {
+  function getTarget(route) {
+    if (route === "home") {
       return "/browse";
     } else {
       return "/";
@@ -47,6 +48,12 @@ const HomeLink = props => {
       {currentRoute === "home" ? <ArrowForward /> : <InfoOutline />}
     </SquareButton>
   );
+};
+
+HomeLink.propTypes = {
+  classes: PropTypes.object.isRequired,
+  currentRoute: PropTypes.string,
+  onClick: PropTypes.func
 };
 
 export default withStyles(styles)(HomeLink);

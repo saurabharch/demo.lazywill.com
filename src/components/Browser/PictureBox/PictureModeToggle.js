@@ -1,10 +1,11 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { withStyles } from "material-ui/styles";
-import SquareButton from "../../shared/SquareButton";
 import Visibility from "material-ui-icons/Visibility";
 import VisibilityOff from "material-ui-icons/VisibilityOff";
+import SquareButton from "../../shared/SquareButton";
 
-const styles = theme => ({
+const styles = () => ({
   root: {
     background: "rgba(255,255,255,0.1)",
     position: "absolute",
@@ -26,6 +27,12 @@ const PictureModeToggle = props => {
       {pictureMode ? <Visibility /> : <VisibilityOff />}
     </SquareButton>
   );
+};
+
+PictureModeToggle.propTypes = {
+  classes: PropTypes.object.isRequired,
+  onClick: PropTypes.func.isRequired,
+  pictureMode: PropTypes.bool.isRequired
 };
 
 export default withStyles(styles)(PictureModeToggle);

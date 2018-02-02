@@ -1,10 +1,11 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { withStyles } from "material-ui/styles";
 import { Link } from "react-router-dom";
 import Color from "color";
 
-import SquareButton from "../shared/SquareButton";
 import InfoOutline from "material-ui-icons/InfoOutline";
+import SquareButton from "../shared/SquareButton";
 
 const styles = theme => ({
   root: {
@@ -27,6 +28,11 @@ const InfoLink = props => {
       <InfoOutline />
     </SquareButton>
   );
+};
+
+InfoLink.propTypes = {
+  classes: PropTypes.object.isRequired,
+  onClick: PropTypes.func.isRequired
 };
 
 export default withStyles(styles)(InfoLink);

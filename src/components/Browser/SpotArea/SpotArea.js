@@ -1,7 +1,8 @@
 import React from "react";
 import injectSheet from "react-jss";
+import PropTypes from "prop-types";
 
-const styles = theme => ({
+const styles = () => ({
   root: {
     bottom: 0,
     left: 0,
@@ -36,6 +37,11 @@ const SpotArea = props => {
       <div className={classes.spot} style={spotStyle} />
     </div>
   );
+};
+
+SpotArea.propTypes = {
+  classes: PropTypes.object.isRequired,
+  spot: PropTypes.object.isRequired
 };
 
 export default injectSheet(styles)(SpotArea);

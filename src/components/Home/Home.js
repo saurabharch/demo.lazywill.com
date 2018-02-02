@@ -1,9 +1,10 @@
 import React from "react";
+import PropTypes from "prop-types";
 import injectSheet from "react-jss";
 import Loadable from "react-loadable";
 import Loading from "../shared/Loading/";
 import SvgEl from "../shared/SvgEl";
-import { LOGOS } from "../../constants/logos";
+import LOGOS from "../../constants/logos";
 
 const styles = theme => ({
   root: {
@@ -64,8 +65,8 @@ const Home = props => {
           <SvgEl svg={LOGOS.MAIN} />
         </span>
         <p>
-          I'm Will and I'm working at a new <b>vocabulary training app</b> for language learners
-          like myself, for declared <b>visual learners</b>.
+          I{`'`}m Will and I{`'`}m working at a new <b>vocabulary training app</b> for language
+          learners like myself, for declared <b>visual learners</b>.
         </p>
         <p>
           Please, take a look at this small <b>demo</b> and share with me what you think.
@@ -91,6 +92,10 @@ const Home = props => {
       </div>
     </div>
   );
+};
+
+Home.propTypes = {
+  classes: PropTypes.object.isRequired
 };
 
 export default injectSheet(styles)(Home);

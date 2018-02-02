@@ -1,6 +1,7 @@
 import React from "react";
 import injectSheet from "react-jss";
 import { withRouter } from "react-router";
+import PropTypes from "prop-types";
 
 import HomeLink from "./HomeLink";
 import NextLink from "./NextLink";
@@ -21,14 +22,15 @@ const styles = theme => ({
   }
 });
 
-const ContextNav = props => {
+const Nav = props => {
   const { classes, location, windowWidth, windowHeight, seenCombos, unseenCombos, history } = props;
   const { pathname } = location;
+
   const currentRoute = getCurrentRoute(pathname);
 
-  function getCurrentRoute(pathname) {
-    const currentRoute = pathname.slice(1);
-    return currentRoute === "" ? "home" : currentRoute;
+  function getCurrentRoute(path) {
+    const route = path.slice(1);
+    return route === "" ? "home" : route;
   }
 
   function getOrientationClass(width, height) {
@@ -48,9 +50,9 @@ const ContextNav = props => {
   return (
     <nav
       className={`
-        ${classes.root}         
+        ${classes.root}
         ${seenCombos > 10 ? "subs-button" : ""}
-        ${currentRoute}-screen 
+        ${currentRoute}-screen
         ${getOrientationClass(windowWidth, windowHeight)}
       `}
     >
@@ -61,4 +63,15 @@ const ContextNav = props => {
   );
 };
 
-export default withRouter(injectSheet(styles)(ContextNav));
+Nav.propTypes = {
+  classes: PropTypes.object.isRequired,
+  location: PropTypes.object.isRequired,
+  windowHeight: PropTypes.number.isRequired,
+  windowWidth: PropTypes.number.isRequired,
+  seenCombos: PropTypes.number.isRequired,
+  unseenCombos: PropTypes.number.isRequired,
+  history: PropTypes.object.isRequired,
+  onNextClick: PropTypes.func.isRequired
+};
+
+export default withRouter(injectSheet(styles)(Nav));

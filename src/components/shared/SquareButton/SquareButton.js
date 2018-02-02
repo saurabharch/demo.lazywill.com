@@ -4,7 +4,7 @@ import { withStyles } from "material-ui/styles";
 
 import BlockButton from "../BlockButton";
 
-const styles = theme => ({
+const styles = () => ({
   root: {
     width: "60px",
     height: "60px"

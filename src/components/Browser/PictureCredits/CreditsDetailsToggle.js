@@ -1,10 +1,11 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { withStyles } from "material-ui/styles";
-import SquareButton from "../../shared/SquareButton";
 import Copyright from "material-ui-icons/Copyright";
 import Close from "material-ui-icons/Close";
+import SquareButton from "../../shared/SquareButton";
 
-const styles = theme => ({
+const styles = () => ({
   root: {
     background: "rgba(255,255,255,0.1)",
     position: "absolute",
@@ -37,6 +38,12 @@ const CreditsDetailsToggle = props => {
       {detailsOpened ? <Close /> : <Copyright />}
     </SquareButton>
   );
+};
+
+CreditsDetailsToggle.propTypes = {
+  classes: PropTypes.object.isRequired,
+  detailsOpened: PropTypes.bool.isRequired,
+  onClick: PropTypes.func.isRequired
 };
 
 export default withStyles(styles)(CreditsDetailsToggle);

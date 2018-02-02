@@ -1,7 +1,7 @@
 import React from "react";
 import { CircularProgress } from "material-ui/Progress";
 import SvgEl from "../SvgEl";
-import { LOGOS } from "../../../constants/logos";
+import LOGOS from "../../../constants/logos";
 
 const Loading = props => {
   const { error } = props;

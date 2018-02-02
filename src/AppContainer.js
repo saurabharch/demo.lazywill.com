@@ -1,5 +1,6 @@
 import React from "react";
 import { MuiThemeProvider } from "material-ui/styles";
+import PropTypes from "prop-types";
 import Reboot from "material-ui/Reboot";
 import injectSheet from "react-jss";
 import { Switch, Route } from "react-router-dom";
@@ -56,14 +57,14 @@ class AppContainer extends React.Component {
     window.removeEventListener("resize", this.windowResizeHandler, false);
   }
 
-  windowResizeHandler(e) {
+  windowResizeHandler() {
     this.setState(() => ({
       windowWidth: document.documentElement.clientWidth, // || window.innerWidth,
       windowHeight: document.documentElement.clientHeight //|| window.innerHeight
     }));
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevProps) {
     if (
       this.props.combosQuery.allComboes !== prevProps.combosQuery.allComboes &&
       this.props.combosQuery.allComboes.length
@@ -220,5 +221,10 @@ const COMBOS_QUERY = gql`
     }
   }
 `;
+
+AppContainer.propTypes = {
+  classes: PropTypes.object.isRequired,
+  combosQuery: PropTypes.object.isRequired
+};
 
 export default graphql(COMBOS_QUERY, { name: "combosQuery" })(injectSheet(globals)(AppContainer));

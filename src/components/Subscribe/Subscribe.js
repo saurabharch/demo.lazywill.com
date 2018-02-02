@@ -4,7 +4,7 @@ import TextField from "material-ui/TextField";
 import PropTypes from "prop-types";
 import Color from "color";
 
-import { LOGOS } from "../../constants/logos";
+import LOGOS from "../../constants/logos";
 import SvgEl from "../shared/SvgEl";
 import BlockButton from "../shared/BlockButton";
 import Loading from "../shared/Loading/";
@@ -289,10 +289,10 @@ class Subscribe extends React.Component {
 
 Subscribe.propTypes = {
   classes: PropTypes.object.isRequired,
-  history: PropTypes.object.isRequired,
   updateSubscription: PropTypes.func.isRequired,
   subscription: PropTypes.bool.isRequired,
-  subscriptionConfirmed: PropTypes.bool.isRequired
+  subscriptionConfirmed: PropTypes.bool.isRequired,
+  history: PropTypes.object
 };
 
 export default injectSheet(styles)(Subscribe);
