@@ -81,6 +81,14 @@ const styles = theme => ({
   },
   labelShrink: {
     color: theme.palette.primary[500]
+  },
+  link: {
+    margin: "40px 0 0 0",
+    display: "block",
+    textAlign: "center",
+    padding: "10px 20px",
+    width: "100%",
+    border: "1px solid white"
   }
 });
 
@@ -182,106 +190,26 @@ class Subscribe extends React.Component {
 
     return (
       <div className={classes.root}>
-        {!subscription &&
-          !fetching &&
-          !error && (
-            <div className={classes.invitation}>
-              <h2>Subscribe to</h2>
-              <h1>
-                <span className={classes.logo}>
-                  <SvgEl svg={LOGOS.MAIN} />
-                </span>
-                Newsletter
-              </h1>
-              <p>Do you like what you{`'`}ve seen?</p>
-              <p>
-                Unfortunately, that{`'`}s all what I can show you for now. The app is still in
-                development.{" "}
-              </p>
-              <p>Subscribe to the Newsletter and I will inform your about the progress of work.</p>
-              <p>Do not miss your chance to try out the app as one of the firsts.</p>
-              <form onSubmit={this.handleSubmit}>
-                <TextField
-                  onChange={this.handleChange("email")}
-                  label="e-mail address"
-                  value={this.state.email}
-                  type="email"
-                  required={true}
-                  fullWidth
-                  InputProps={{
-                    classes: {
-                      inkbar: classes.inputInkbar
-                    }
-                  }}
-                  InputLabelProps={{
-                    classes: {
-                      shrink: classes.labelShrink
-                    }
-                  }}
-                />
-                <BlockButton
-                  type="submit"
-                  classes={{
-                    root: classes.submitButton
-                  }}
-                >
-                  Subscribe
-                </BlockButton>
-              </form>
-            </div>
-          )}
-        {subscription &&
-          !subscriptionConfirmed && (
-            <div className={classes.instruction}>
-              <h1>Confirm your subscription</h1>
-              <p>We have sent you an e-mail validation message.</p>
-              <p>
-                Please, open your e-mail client and find a message from{" "}
-                <em>Will at lazywill.com</em> with a subject{" "}
-                <em>Please confirm your Newsletter subscription</em>.
-              </p>
-              <p>Open the message and click the confirmation link.</p>
-              <p>Thank you and see you soon</p>
-              <p>
-                <b>Will</b>
-                <span className={classes.avatar}>
-                  <SvgEl svg={LOGOS.AVATAR} />
-                </span>{" "}
-              </p>
-            </div>
-          )}
-        {subscription &&
-          subscriptionConfirmed && (
-            <div className={classes.instruction}>
-              <h1>Thank you</h1>
-              <p>The subscription for the given e-mail address already exists.</p>
-              <p>See you soon</p>
-              <p>
-                <b>Will</b>
-                <span className={classes.avatar}>
-                  <SvgEl svg={LOGOS.AVATAR} />
-                </span>{" "}
-              </p>
-            </div>
-          )}
-        {error && (
-          <div className={classes.instruction}>
-            <h1>Oooops...</h1>
-            <p>I{`'`}m sorry, but something went wrong.</p>
-            <p>Please reaload the app and try again.</p>
-            <p>
-              <b>Will</b>
-              <span className={classes.avatar}>
-                <SvgEl svg={LOGOS.AVATAR} />
-              </span>{" "}
-            </p>
-          </div>
-        )}
-        {fetching && (
-          <div className={classes.textBox}>
-            <Loading />
-          </div>
-        )}
+        <div className={classes.invitation}>
+          <h2>Subscribe to</h2>
+          <h1>
+            <span className={classes.logo}>
+              <SvgEl svg={LOGOS.MAIN} />
+            </span>
+            Newsletter
+          </h1>
+          <p>Do you like what you{`'`}ve seen?</p>
+          <p>
+            Unfortunately, that{`'`}s all what I can show you for now. The app is still in
+            development.{" "}
+          </p>
+          <p>Follow me on Twitter and I will inform your about the launch date.</p>
+          <p>
+            <a className={classes.link} href="https://twitter.com/applazywill">
+              @applazywill
+            </a>
+          </p>
+        </div>
       </div>
     );
   }
